@@ -9,20 +9,13 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
         .project-hero {
-            position: relative; 
-            width: 100%; 
-            /* USAMOS MIN-HEIGHT */
-            min-height: 50vh; 
+            position: relative; width: 100%; min-height: 50vh; 
             background-image: url('assets/img/proyectos/jamaica/bannerJam.jpg');
-            background-size: cover; 
-            background-position: center;
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center;
         }
         .project-hero::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
-            background: rgba(0,0,0,0.4);
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4);
         }
     </style>
 </head>
@@ -30,7 +23,9 @@
 
     <header>
         <div class="logo-container"><a href="index.html"><img src="assets/img/general/logo.png" alt="Eivinderivas"></a></div>
-        <nav>
+        <div class="menu-toggle" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></div>
+
+        <nav class="desktop-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="proyectosPersonales.html">Proyectos Personales</a></li>
@@ -39,10 +34,27 @@
                 <li><a href="cursos.html">Cursos</a></li>
             </ul>
         </nav>
-        <div class="header-social">
+        <div class="header-social desktop-social">
             <a href="https://www.instagram.com/eivind_derivas/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
             <a href="contacto.html"><i class="fa-regular fa-envelope"></i></a>
             <a href="https://www.youtube.com/@Synthgraf_IA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+
+        <div class="mobile-menu-overlay" id="mobile-menu">
+            <button class="close-menu" id="close-menu-btn" style="background:none; border:none; color:white; font-size:3rem; position:absolute; top:20px; right:30px; cursor:pointer;">&times;</button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="proyectosPersonales.html">Proyectos Personales</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="about.html">Acerca de mi</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <div class="mobile-social">
+                <a href="https://www.instagram.com/eivind_derivas/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@Synthgraf_IA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="contacto.html"><i class="fa-regular fa-envelope"></i></a>
+            </div>
         </div>
     </header>
 

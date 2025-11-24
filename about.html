@@ -9,42 +9,26 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
         .about-banner {
-            position: relative;
-            width: 100%;
-            /* USAMOS MIN-HEIGHT para que se adapte al contenido */
-            min-height: 100vh; 
+            position: relative; width: 100%; min-height: 100vh; 
             background-image: url('assets/img/acerca/bannerAcerca.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center;
         }
         .about-banner::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6);
         }
         .about-text {
-            position: relative;
-            z-index: 2;
-            text-align: left;
-            max-width: 800px;
-            padding: 40px;
-            color: white;
-            margin-top: 60px; 
+            position: relative; z-index: 2; text-align: left;
+            max-width: 800px; padding: 40px; color: white; margin-top: 60px; 
         }
         .about-text p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
+            font-size: 1.2rem; line-height: 1.8; margin-bottom: 20px;
         }
         .profile-photo-section {
-            padding: 50px 0;
-            text-align: center;
-            background-color: #000;
+            padding: 50px 0; text-align: center; background-color: #000;
         }
         .profile-photo-section img {
-            max-width: 400px;
-            border-radius: 5px; 
+            max-width: 400px; border-radius: 5px; 
             box-shadow: 0 4px 15px rgba(255,255,255,0.1);
         }
     </style>
@@ -53,8 +37,9 @@
 
     <header>
         <div class="logo-container"><a href="index.html"><img src="assets/img/general/logo.png" alt="Eivinderivas"></a></div>
-        
-        <nav>
+        <div class="menu-toggle" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></div>
+
+        <nav class="desktop-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="proyectosPersonales.html">Proyectos Personales</a></li>
@@ -63,11 +48,27 @@
                 <li><a href="cursos.html">Cursos</a></li>
             </ul>
         </nav>
-
-        <div class="header-social">
+        <div class="header-social desktop-social">
             <a href="https://www.instagram.com/eivind_derivas/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
             <a href="contacto.html"><i class="fa-regular fa-envelope"></i></a>
             <a href="https://www.youtube.com/@Synthgraf_IA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+
+        <div class="mobile-menu-overlay" id="mobile-menu">
+            <button class="close-menu" id="close-menu-btn" style="background:none; border:none; color:white; font-size:3rem; position:absolute; top:20px; right:30px; cursor:pointer;">&times;</button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="proyectosPersonales.html">Proyectos Personales</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="about.html">Acerca de mi</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <div class="mobile-social">
+                <a href="https://www.instagram.com/eivind_derivas/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@Synthgraf_IA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="contacto.html"><i class="fa-regular fa-envelope"></i></a>
+            </div>
         </div>
     </header>
 

@@ -35,7 +35,9 @@ p {
     line-height: 1.8;
 }
 
-/* HEADER */
+/* =========================================
+   HEADER DESKTOP & GENERAL
+   ========================================= */
 header {
     background: linear-gradient(to bottom, #141414, #000000);
     padding: 20px 40px;
@@ -49,7 +51,7 @@ header {
     transition: all 0.3s ease;
 }
 
-.logo-container { margin-left: 20px; }
+.logo-container { margin-left: 20px; z-index: 1001; } /* Z-index alto para estar sobre el menú movil */
 .logo-container img {
     height: 70px;
     width: auto;
@@ -58,14 +60,15 @@ header {
     object-fit: contain;
 }
 
-nav {
+/* Navegación Desktop (se oculta en movil) */
+.desktop-nav {
     flex: 2;
     display: flex;
     justify-content: center;
     margin: 0 40px;
 }
 
-nav ul {
+.desktop-nav ul {
     display: flex;
     list-style: none;
     align-items: center;
@@ -74,7 +77,7 @@ nav ul {
     justify-content: space-between;
 }
 
-nav a {
+.desktop-nav a {
     text-decoration: none;
     color: var(--text-color);
     font-size: 1rem;
@@ -85,9 +88,15 @@ nav a {
     transition: color 0.3s, opacity 0.3s;
 }
 
-nav a:hover { color: #fff; opacity: 0.7; }
+.desktop-nav a:hover { color: #fff; opacity: 0.7; }
 
-.header-social { display: flex; gap: 25px; align-items: center; }
+/* Redes Sociales Desktop (se oculta en movil) */
+.desktop-social {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
 .header-social a {
     color: white; font-size: 1.1rem;
     transition: transform 0.3s, color 0.3s;
@@ -95,7 +104,65 @@ nav a:hover { color: #fff; opacity: 0.7; }
 }
 .header-social a:hover { color: #ccc; transform: scale(1.1); }
 
-/* MODO TRANSPARENTE */
+/* =========================================
+   ELEMENTOS MENÚ MÓVIL
+   ========================================= */
+.menu-toggle {
+    display: none; /* Oculto en PC */
+    font-size: 1.8rem;
+    color: white;
+    cursor: pointer;
+    z-index: 1002; /* Por encima de todo */
+}
+
+.mobile-menu-overlay {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    right: 0; /* Sale de la derecha */
+    width: 100%; /* Ocupa toda la pantalla o un % */
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95); /* Fondo negro casi solido */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+    display: flex;
+}
+
+.mobile-menu-overlay ul {
+    list-style: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.mobile-menu-overlay a {
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.mobile-social {
+    margin-top: 40px;
+    display: flex;
+    gap: 30px;
+}
+
+.mobile-social a {
+    font-size: 1.8rem;
+}
+
+/* =========================================
+   MODO TRANSPARENTE (Header)
+   ========================================= */
 body.transparent-mode header {
     background: transparent;
     background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%);
@@ -108,10 +175,12 @@ body.transparent-mode .project-hero,
 body.transparent-mode .about-banner,
 body.transparent-mode .projects-menu { padding-top: 100px; }
 
-/* CARRUSEL GENERAL (HOME) */
+/* =========================================
+   CARRUSEL GENERAL (HOME)
+   ========================================= */
 .carousel-container {
     position: relative; width: 100%; 
-    height: 100vh; /* Pantalla Completa */
+    height: 100vh; /* PC: Pantalla Completa */
     overflow: hidden; display: flex; align-items: center; justify-content: center;
     background-color: #000; 
 }
@@ -244,7 +313,9 @@ footer .social-icons-footer a:hover { color: #555; }
 /* CONTENEDOR PRINCIPAL */
 main { margin-top: 100px; min-height: 90vh; }
 
-/* RESPONSIVE */
+/* =========================================
+   RESPONSIVE / MÓVIL
+   ========================================= */
 @media screen and (max-width: 1024px) {
     header { padding: 15px 20px; }
     nav ul { gap: 20px; max-width: 100%; } 
@@ -252,30 +323,56 @@ main { margin-top: 100px; min-height: 90vh; }
 }
 
 @media screen and (max-width: 768px) {
-    header { position: relative; flex-direction: column; padding: 20px; background: #141414 !important; height: auto; }
-    body.transparent-mode header { background: #141414 !important; }
-    body.transparent-mode main { margin-top: 0; }
+    /* 1. HEADER MÓVIL (Transparente y Menú Hamburguesa) */
+    header { 
+        padding: 20px; 
+        height: auto; 
+        /* Mantenemos el fondo gradiente o transparente, NO negro sólido forzoso */
+    }
     
-    .logo-container { margin-left: 0; margin-bottom: 20px; }
-    nav { margin: 15px 0; width: 100%; }
-    nav ul { flex-direction: column; gap: 15px; width: 100%; padding: 0; }
-    .header-social { margin-top: 15px; gap: 30px; }
-    .project-link { font-size: 2rem; margin: 25px 0; }
-    .project-carousel-frame { max-width: 100%; aspect-ratio: 4 / 3; }
+    /* REGLA IMPORTANTE: En movil tambien permitimos transparencia */
+    body.transparent-mode header { 
+        background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%) !important; 
+    }
+    body.transparent-mode main { margin-top: 0; }
 
-    /* --- CORRECCIONES PARA BANNER Y TEXTO EN MÓVIL --- */
+    /* Ocultar menú desktop */
+    .desktop-nav, .desktop-social { display: none; }
+    
+    /* Mostrar icono hamburguesa */
+    .menu-toggle { display: block; }
+
+    /* Ajuste logo */
+    .logo-container { margin-left: 0; margin-bottom: 0; } /* Eliminamos margins raros */
+
+    /* 2. HOME CARRUSEL MÓVIL (Más pequeño y con margen) */
+    /* Usamos :not(.project-carousel-frame) para no afectar a los de proyectos */
+    .carousel-container:not(.project-carousel-frame) {
+        height: 55vh; /* Menos altura */
+        width: auto;
+        margin: 20px; /* Margen a los costados */
+        border-radius: 8px; /* Opcional: borde redondeado */
+    }
+
+    /* 3. PROYECTOS BANNER TEXTO (Que quepa todo) */
     .project-hero, .about-banner {
         height: auto !important; 
-        min-height: 70vh; 
+        min-height: 60vh; 
         padding-bottom: 60px; 
+        align-items: flex-end; /* Alinear contenido abajo para dar espacio */
     }
 
     .hero-text, .about-text {
-        margin-top: 120px; 
+        margin-top: 100px; 
         text-align: left; 
         padding: 20px; 
+        width: 100%;
+        background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); /* Sombra para leer texto */
     }
 
     .hero-text h1, .about-text h1 { font-size: 1.8rem; }
     .hero-text p, .about-text p { font-size: 1rem; }
+
+    .project-link { font-size: 2rem; margin: 25px 0; }
+    .project-carousel-frame { max-width: 100%; aspect-ratio: 4 / 3; }
 }

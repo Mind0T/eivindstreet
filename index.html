@@ -15,7 +15,11 @@
             <a href="index.html"><img src="assets/img/general/logo.png" alt="Eivinderivas Logo"></a>
         </div>
         
-        <nav>
+        <div class="menu-toggle" id="mobile-menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <nav class="desktop-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="proyectosPersonales.html">Proyectos Personales</a></li>
@@ -25,10 +29,27 @@
             </ul>
         </nav>
 
-        <div class="header-social">
+        <div class="header-social desktop-social">
             <a href="https://www.instagram.com/eivind_derivas/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
             <a href="contacto.html"><i class="fa-regular fa-envelope"></i></a>
             <a href="https://www.youtube.com/@Synthgraf_IA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+
+        <div class="mobile-menu-overlay" id="mobile-menu">
+            <button class="close-menu" id="close-menu-btn" style="background:none; border:none; color:white; font-size:3rem; position:absolute; top:20px; right:30px; cursor:pointer;">&times;</button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="proyectosPersonales.html">Proyectos Personales</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="about.html">Acerca de mi</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <div class="mobile-social">
+                <a href="https://www.instagram.com/eivind_derivas/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@Synthgraf_IA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="contacto.html"><i class="fa-regular fa-envelope"></i></a>
+            </div>
         </div>
     </header>
 
