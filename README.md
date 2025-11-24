@@ -1,109 +1,84 @@
-# 📸 Portafolio Fotográfico — *Eivind Leso* (v1.0)
+# DERIURS - Portfolio Web
 
-[![Deploy with Vercel](https://vercel.com/button)](https://eivindleso.vercel.app/)
+Este repositorio contiene el código fuente del sitio web personal de **DERIURS**, un portafolio diseñado para exhibir fotografía documental, videografía aérea y la intersección con la Ingeniería en IA.
 
-Sitio web oficial del fotógrafo **Eivind Leso**, desarrollado como una **Single Page Application (SPA)** completamente estática y **100% responsiva**, creada con **HTML, CSS y JavaScript puro (Vanilla JS)**.  
-Diseñada para ser **ligera, rápida y visualmente elegante**, enfocada en la experiencia del usuario.
+El diseño sigue una estética minimalista y oscura ("Dark Mode"), priorizando la visualización de imágenes de alta calidad y una navegación tipográfica limpia y moderna utilizando la familia de fuentes *Montserrat*.
 
-👉 **Versión en vivo:** [https://eivindleso.vercel.app](https://eivindleso.vercel.app)
+## 📋 Características Principales
 
----
+* **Diseño Responsivo:** Adaptable a dispositivos móviles y escritorio.
+* **Navegación Dinámica:**
+    * Header fijo con gradiente y distribución equilibrada (Logo a la izquierda, Menú al centro, Redes a la derecha).
+    * Tipografía "Light" para una densidad visual elegante.
+    * Efectos de *hover* en enlaces e iconos.
+* **Carrusel de Imágenes (Slider):**
+    * Implementado en JavaScript puro (Vanilla JS).
+    * Funcionalidad automática y manual (flechas de navegación).
+* **Menú de Proyectos Interactivo:**
+    * Cambio de fondo de pantalla completa al pasar el cursor sobre los nombres de los proyectos (`onmouseover`).
+* **Galería de Videos:**
+    * Integración (Embed) de videos de YouTube manteniendo la relación de aspecto 16:9.
+* **Tipografía y Iconos:**
+    * Uso de *Google Fonts* (Montserrat) con jerarquía de grosores (Light vs. Extra Bold).
+    * Iconos vectoriales mediante *FontAwesome* (sin uso de imágenes PNG para iconos).
 
-## 🖼️ Vista Previa
+## 🛠️ Tecnologías Utilizadas
 
-![Captura del portafolio de Eivind Leso](./screenshot.png)  
-*Para personalizarla, reemplaza `screenshot.png` con una captura actualizada del sitio.*
+* **HTML5:** Estructura semántica.
+* **CSS3:** Variables CSS (`:root`), Flexbox, CSS Grid y transiciones.
+* **JavaScript (ES6):** Lógica del carrusel y manipulación del DOM para fondos dinámicos.
+* **Librerías Externas:**
+    * [FontAwesome 6.4](https://fontawesome.com/) (Iconos)
+    * [Google Fonts](https://fonts.google.com/) (Montserrat)
 
----
+## 📂 Estructura del Proyecto
 
-## 🧭 Estructura del Proyecto
+El proyecto sigue una estructura ordenada para facilitar el mantenimiento:
 
-```bash
-EivindLeso/
-├── index.html              # Estructura principal del sitio
-├── css/
-│   └── style.css           # Hoja de estilos base y responsive
-├── js/
-│   └── script.js           # Interactividad y manipulación del DOM
-├── img/
-│   ├── carrusel/           # Imágenes del carrusel inicial
-│   ├── trabajo/            # Fotografías del portafolio
-│   ├── logo2.png
-│   └── mi-foto.jpg
-└── README.md               # Documentación del proyecto
-```
+```text
+/
+├── index.html                # Página de Inicio (Carrusel principal)
+├── about.html                # Sección "Acerca de mí"
+├── proyectosPersonales.html  # Menú interactivo de proyectos
+├── videos.html               # Galería de videografía
+├── cursos.html               # Sección de cursos ofertados
+├── iztapalapa.html           # Proyecto individual
+├── jamaica.html              # Proyecto individual
+├── metroCdmx.html            # Proyecto individual
+├── README.md                 # Documentación
+└── assets/
+    ├── css/
+    │   └── style.css         # Estilos globales
+    ├── js/
+    │   └── script.js         # Lógica del carrusel y fondos
+    └── img/
+        ├── general/          # Logos, iconos antiguos, recursos base
+        ├── acerca/           # Fotos para sección about
+        ├── carruselHOME/     # Imágenes del slider inicial
+        └── proyectos/        # Carpetas por proyecto (iztapalapa, metro, etc.)
 
----
+🚀 Instalación y Uso
+Este es un sitio web estático, por lo que no requiere instalación de dependencias complejas ni servidores backend.
 
-## ⚙️ Arquitectura y Decisiones Técnicas
+Clonar el repositorio:
 
-### 🧩 JavaScript — *Vanilla JS*
-Se eligió **JavaScript puro** para mantener un rendimiento óptimo y eliminar dependencias innecesarias.  
-Toda la lógica principal se ejecuta tras el evento `DOMContentLoaded` desde `js/script.js`.
+git clone [https://github.com/tu-usuario/deriurs-portfolio.git](https://github.com/tu-usuario/deriurs-portfolio.git)
 
-**Características clave:**
-- **🎞️ Filtrado de galería:**  
-  Control dinámico mediante `data-category` para mostrar/ocultar imágenes.
-- **🪶 Lightbox interactivo:**  
-  Permite navegar entre imágenes sin salir del visor, gestionando un array dinámico de la categoría activa.
-- **🔁 Carrusel animado:**  
-  Implementa transiciones suaves con `setTimeout`, `setInterval` y clases CSS (`.active`, `.transitioning`).
+2. Ejecutar: Simplemente abre el archivo index.html en tu navegador web preferido (Chrome, Firefox, Edge).
 
----
+Recomendación: Para desarrollo, utiliza la extensión "Live Server" de VS Code.
 
-### 🎨 CSS — *Diseño Moderno y Limpio*
-`style.css` está organizado modularmente y aprovecha características modernas:
+⚙️ Personalización
+Agregar un nuevo proyecto
+Duplica un archivo de proyecto existente (ej. iztapalapa.html) y renómbralo.
 
-- **Variables CSS (`:root`)** para colores y tipografías globales.  
-- **Flexbox + CSS Grid** para una composición fluida y responsiva.  
-- **Transiciones y animaciones** sutiles (`@keyframes`) que refuerzan la experiencia visual (zoom, fundido, desplazamiento).
+Actualiza el título y la descripción en el HTML.
 
----
+Cambia las rutas de las imágenes del carrusel.
 
-### 📬 Formulario de Contacto
-El formulario usa **Formspree** como backend externo, lo que permite enviar correos sin un servidor propio.  
-El endpoint de Formspree recibe y procesa los datos del formulario de forma segura.
-
----
-
-## 🚀 Despliegue y Flujo CI/CD
-
-El sitio está alojado en **Vercel**, integrado directamente con GitHub.
-
-- **Despliegue continuo:** Cada `push` en `main` genera automáticamente un nuevo build.  
-- **Atomic Deployments:** Sin tiempo de inactividad; el nuevo sitio se activa solo al finalizar la compilación.  
-- **Preview Deployments:** Cada rama genera una URL temporal para pruebas previas a la fusión.
-
----
-
-## 🧠 Cómo Ejecutar el Proyecto Localmente
-
-1. **Clona este repositorio:**
-   ```bash
-   git clone https://github.com/Mind0T/EivindLeso.git
-   ```
-2. **Accede al directorio:**
-   ```bash
-   cd EivindLeso
-   ```
-3. **Ejecuta el proyecto:**
-   - Abre `index.html` directamente en tu navegador, **o**
-   - Usa la extensión **Live Server** de VS Code para habilitar recarga automática.
-
----
-
-## 🔮 Mejoras Futuras
-
-- **🖼️ Lazy Loading:** optimizar la carga diferida de imágenes.  
-- **📦 Modularización JS:** refactorización con ES6 Modules.  
-- **💫 Animaciones on-scroll:** añadir efectos suaves al desplazarse.  
-- **🧩 CMS Headless:** integrar un gestor de contenido (p. ej. Contentful o Sanity) para facilitar la actualización del portafolio.
-
----
-
-## 👤 Autor
-
-**Irving Soriano**  
-📂 *Fotografo y estudiante de Ing en Inteligencia Artificial*  
-- GitHub: [@Mind0T](https://github.com/Mind0T)  
-- LinkedIn: [Irving Soriano](https://www.linkedin.com/in/irving-soriano/)
+Agrega el enlace en proyectosPersonales.html:
+<a href="nuevo-proyecto.html" class="project-link" 
+   onmouseover="changeBackground('nuevaImagenFondo.jpg')" 
+   onmouseout="resetBackground()">
+   Nombre del Proyecto
+</a>

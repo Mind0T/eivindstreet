@@ -3,54 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DERIURS - Acerca de mí</title>
+    <title>Proyectos Personales</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        .about-banner {
-            position: relative;
-            width: 100%;
-            height: 100vh; 
-            background-image: url('assets/img/acerca/bannerAcerca.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .about-banner::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6);
-        }
-        .about-text {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 800px;
-            padding: 40px;
-            color: white;
-        }
-        .about-text p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        .profile-photo-section {
-            padding: 50px 0;
-            text-align: center;
-            background-color: #000;
-        }
-        .profile-photo-section img {
-            max-width: 400px;
-            border-radius: 5px; 
-            box-shadow: 0 4px 15px rgba(255,255,255,0.1);
-        }
-    </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-container"><a href="index.html"><img src="assets/img/general/logo.png" alt="DERIURS"></a></div>
+        <div class="logo-container">
+            <a href="index.html"><img src="assets/img/general/logo.png" alt="Eivinderivas Logo"></a>
+        </div>
         
         <nav>
             <ul>
@@ -69,28 +32,25 @@
         </div>
     </header>
 
-    <main style="margin-top: 0;"> 
-        <section class="about-banner">
-            <div class="about-text">
-                <p>
-                    "Soy un fotógrafo documental e ingeniero en Inteligencia Artificial en formación con base en la Ciudad de México. 
-                    Formado en la Escuela Activa de Fotografía y con 5 años de experiencia tras la lente, mi trabajo explora la 
-                    intersección entre la documentación social y el análisis estructural de la imagen.
-                </p>
-                <p>
-                    Mi obra se centra en la identidad urbana y la memoria. Proyectos como la documentación de Iztapalapa (mi hogar durante 34 años), 
-                    el Mercado de Jamaica o el Metro de la CDMX, nacen de una curiosidad por entender los sistemas complejos que mueven a la ciudad.
-                </p>
-                <p>
-                    Ya sea a través de la fotografía de calle o la macrofotografía, busco revelar los patrones, texturas e historias 
-                    que a menudo pasan desapercibidas en el caos cotidiano."
-                </p>
-            </div>
-        </section>
+    <main id="projects-container" class="projects-menu">
+        
+        <a href="iztapalapa.html" class="project-link" 
+           onmouseover="changeBackground('fondoIzt.jpg')" 
+           onmouseout="resetBackground()">
+           Iztapalapa
+        </a>
 
-        <section class="profile-photo-section">
-            <img src="assets/img/acerca/acerca.jpg" alt="Retrato del Fotógrafo">
-        </section>
+        <a href="jamaica.html" class="project-link" 
+           onmouseover="changeBackground('fondoJam.jpg')" 
+           onmouseout="resetBackground()">
+           Jamaica
+        </a>
+
+        <a href="metroCdmx.html" class="project-link" 
+           onmouseover="changeBackground('fondoMet.jpg')" 
+           onmouseout="resetBackground()">
+           Metro CDMX
+        </a>
 
     </main>
 
@@ -101,6 +61,7 @@
             <a href="mailto:tuemail@ejemplo.com"><i class="fa-regular fa-envelope"></i></a>
         </div>
     </footer>
+
     <script src="assets/js/script.js"></script>
 </body>
 </html>

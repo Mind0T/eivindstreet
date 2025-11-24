@@ -46,9 +46,13 @@ header {
     z-index: 1000;
 }
 
+/* ACTUALIZACIÓN: Control robusto de dimensiones del logo */
 .logo-container img {
-    height: 50px; 
+    height: 50px;       /* Altura fija para mantener consistencia en el header */
+    width: auto;        /* El ancho se ajusta automáticamente para no deformar la imagen */
     display: block;
+    max-width: 200px;   /* Límite de seguridad de ancho */
+    object-fit: contain; /* Asegura que la imagen entera sea visible sin recortes */
 }
 
 /* MENU CENTRAL */
