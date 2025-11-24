@@ -3,99 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eivinderivas - Cursos</title>
+    <title>Eivinderivas - Videos</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .cursos-section {
+        .video-section {
             padding: 50px 20px;
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
         }
-
-        .cursos-section h1 {
+        .video-section h1 {
             font-size: 2.5rem;
             margin-bottom: 50px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-align: center;
+            color: #fff;
         }
-
-        .cards-container {
-            display: flex;
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
-            flex-wrap: wrap;
             justify-content: center;
-            max-width: 1200px;
         }
-
-        .curso-card {
+        .video-card {
             background-color: #141414;
+            padding: 15px;
             border: 1px solid #333;
-            border-radius: 8px;
-            width: 350px;
-            padding: 0;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
         }
-
-        .curso-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        .video-card:hover {
             border-color: #fff;
         }
-
-        .card-img-placeholder {
-            width: 100%;
-            height: 200px;
-            background-color: #222;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #555;
-            font-size: 0.9rem;
-        }
-        
-        .card-content {
-            padding: 25px;
+        .video-card h3 {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: #ddd;
+            font-weight: normal;
+            letter-spacing: 1px;
             text-align: left;
         }
-
-        .card-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #fff;
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; 
+            height: 0;
+            overflow: hidden;
+            background: #000;
         }
-
-        .card-content p {
-            font-size: 1rem;
-            color: #aaa;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .btn-curso {
-            display: inline-block;
-            padding: 10px 25px;
-            background-color: transparent;
-            border: 1px solid #fff;
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .btn-curso:hover {
-            background-color: #fff;
-            color: #000;
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
     </style>
 </head>
@@ -124,34 +87,31 @@
     </header>
 
     <main>
-        <section class="cursos-section">
-            <h1>Cursos Disponibles</h1>
+        <section class="video-section">
+            <h1>Videografía Aérea & Documental</h1>
             
-            <div class="cards-container">
+            <div class="video-grid">
                 
-                <article class="curso-card">
-                    <div class="card-img-placeholder">
-                        <img src="assets/img/general/logo.png" style="height: 40px; opacity: 0.5;" alt="Placeholder">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/lF-ubEqjuA4" title="Parque México" allowfullscreen></iframe>
                     </div>
-                    
-                    <div class="card-content">
-                        <h3>Inteligencia Artificial y Fotografía</h3>
-                        <p>Descubre cómo integrar herramientas generativas en tu flujo de trabajo fotográfico y expande tus horizontes creativos.</p>
-                        <a href="#" class="btn-curso">Más Información</a>
-                    </div>
-                </article>
+                    <h3>Parque México</h3>
+                </div>
 
-                <article class="curso-card">
-                    <div class="card-img-placeholder">
-                         <img src="assets/img/general/logo.png" style="height: 40px; opacity: 0.5;" alt="Placeholder">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/8OFP-VfWId8" title="Cable bus Iztapalapa" allowfullscreen></iframe>
                     </div>
-                    
-                    <div class="card-content">
-                        <h3>Postproducción Fotográfica</h3>
-                        <p>Domina el revelado digital, la corrección de color y la edición avanzada para dar a tus imágenes el acabado profesional que buscan.</p>
-                        <a href="#" class="btn-curso">Más Información</a>
+                    <h3>Cablebús Iztapalapa</h3>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/1bKtLL1sfSg" title="Vuelo Reforma" allowfullscreen></iframe>
                     </div>
-                </article>
+                    <h3>Vuelo Reforma</h3>
+                </div>
 
             </div>
         </section>
