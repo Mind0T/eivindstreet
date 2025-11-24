@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DERIURS - Jamaica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .project-hero {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            background-image: url('assets/img/proyectos/jamaica/bannerJam.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .project-hero::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5);
+        }
+        .hero-text {
+            position: relative; z-index: 2; text-align: center; max-width: 900px; padding: 20px;
+        }
+        .hero-text h1 { font-size: 3rem; margin-bottom: 20px; text-transform: uppercase; }
+        .hero-text p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 10px;}
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container"><a href="index.html"><img src="assets/img/general/logo.png" alt="DERIURS"></a></div>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="proyectosPersonales.html">Proyectos Personales</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="about.html">Acerca de mi</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-social">
+            <a href="https://www.instagram.com/eivind_derivas/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="mailto:tuemail@ejemplo.com"><i class="fa-regular fa-envelope"></i></a>
+            <a href="https://www.youtube.com/@Synthgraf_IA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="hero-text">
+                <h1>Jamaica</h1>
+                <p>"El Mercado de Jamaica es el punto donde la Ciudad de México viene a celebrar la vida y a llorar la muerte. Este ensayo documental se adentra en los pasillos donde se tejen las emociones de la capital: desde la euforia de los arreglos festivos hasta la solemnidad de las coronas fúnebres.</p>
+                <p>El proyecto documenta la labor invisible de los floristas y "diableros" que, las 24 horas del día, mantienen vivo este ciclo.</p>
+                <p>Más que un mercado, presento a Jamaica como un templo pagano y comercial, un espacio de transición donde la naturaleza se convierte en símbolo, ofrenda y despedida. Es un retrato de la fe y el duelo chilango a través de sus flores."</p>
+            </div>
+        </section>
+
+        <div class="carousel-container" style="height: 70vh; margin-top: 50px;">
+            <img class="carousel-slide fade" src="assets/img/proyectos/jamaica/jamCarru1.jpg" alt="Jamaica 1">
+            <img class="carousel-slide fade" src="assets/img/proyectos/jamaica/jamCarru2.jpg" alt="Jamaica 2">
+            <img class="carousel-slide fade" src="assets/img/proyectos/jamaica/jamCarru3.jpg" alt="Jamaica 3">
+            <img class="carousel-slide fade" src="assets/img/proyectos/jamaica/jamCarru4.jpg" alt="Jamaica 4">
+            <img class="carousel-slide fade" src="assets/img/proyectos/jamaica/jamCarru5.jpg" alt="Jamaica 5">
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <div class="project-nav" style="display: flex; justify-content: space-between; padding: 40px;">
+            <a href="iztapalapa.html">&#10094; Iztapalapa</a>
+            <a href="metroCdmx.html">Metro CDMX &#10095;</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-icons-footer">
+            <a href="#"><img src="assets/img/general/ig_icon_black.png" alt="IG"></a>
+            <a href="#"><img src="assets/img/general/yt_icon_black.png" alt="YT"></a>
+            <a href="#"><img src="assets/img/general/mail_icon_black.png" alt="Mail"></a>
+        </div>
+    </footer>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

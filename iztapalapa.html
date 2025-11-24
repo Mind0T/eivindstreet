@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DERIURS - Iztapalapa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .project-hero {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            background-image: url('assets/img/proyectos/iztapalapa/bannerIzt.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5); 
+        }
+        .hero-text {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+        }
+        .hero-text h1 { font-size: 3rem; margin-bottom: 20px; text-transform: uppercase; }
+        .hero-text p { font-size: 1.1rem; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <a href="index.html"><img src="assets/img/general/logo.png" alt="DERIURS Logo"></a>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="proyectosPersonales.html">Proyectos Personales</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="about.html">Acerca de mi</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-social">
+            <a href="https://www.instagram.com/eivind_derivas/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="mailto:tuemail@ejemplo.com"><i class="fa-regular fa-envelope"></i></a>
+            <a href="https://www.youtube.com/@Synthgraf_IA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="hero-text">
+                <h1>Iztapalapa</h1>
+                <p>
+                    Iztapalapa no es solo una demarcación geográfica; es un organismo vivo que respira, cambia y resiste. 
+                    Durante 34 años, estas calles han sido el escenario de mi propia historia. Este proyecto no busca la mirada 
+                    ajena o sensacionalista que a menudo define a la alcaldía desde fuera, sino que ofrece una perspectiva 
+                    desde la entraña, la del habitante que conoce las grietas de cada banqueta.
+                </p>
+            </div>
+        </section>
+
+        <div class="carousel-container" style="height: 70vh; margin-top: 50px;">
+            <img class="carousel-slide fade" src="assets/img/proyectos/iztapalapa/iztaCarru1.jpg" alt="Iztapalapa 1">
+            <img class="carousel-slide fade" src="assets/img/proyectos/iztapalapa/iztaCarru2.jpg" alt="Iztapalapa 2">
+            <img class="carousel-slide fade" src="assets/img/proyectos/iztapalapa/iztaCarru3.jpg" alt="Iztapalapa 3">
+            <img class="carousel-slide fade" src="assets/img/proyectos/iztapalapa/iztaCarru4.jpg" alt="Iztapalapa 4">
+            <img class="carousel-slide fade" src="assets/img/proyectos/iztapalapa/iztaCarru5.jpg" alt="Iztapalapa 5">
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <div class="project-nav" style="text-align: right;">
+            <a href="jamaica.html" style="margin-left: auto;">Jamaica &#10095;</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-icons-footer">
+            <a href="https://www.instagram.com/eivind_derivas/"><img src="assets/img/general/ig_icon_black.png" alt="IG"></a>
+            <a href="https://www.youtube.com/@Synthgraf_IA"><img src="assets/img/general/yt_icon_black.png" alt="YT"></a>
+            <a href="mailto:tuemail@ejemplo.com"><img src="assets/img/general/mail_icon_black.png" alt="Mail"></a>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

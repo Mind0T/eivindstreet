@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DERIURS - Metro CDMX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .project-hero {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            background-image: url('assets/img/proyectos/metro/bannerMet.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .project-hero::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5);
+        }
+        .hero-text {
+            position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 20px;
+        }
+        .hero-text h1 { font-size: 3rem; margin-bottom: 20px; text-transform: uppercase; }
+        .hero-text p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container"><a href="index.html"><img src="assets/img/general/logo.png" alt="DERIURS"></a></div>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="proyectosPersonales.html">Proyectos Personales</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="about.html">Acerca de mi</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-social">
+            <a href="https://www.instagram.com/eivind_derivas/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="mailto:tuemail@ejemplo.com"><i class="fa-regular fa-envelope"></i></a>
+            <a href="https://www.youtube.com/@Synthgraf_IA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="hero-text">
+                <h1>Metro CDMX</h1>
+                <p>El Metro es el lugar donde más acompañados estamos y, paradójicamente, donde más solos nos sentimos.</p>
+                <p>Este ensayo fotográfico se adentra en la intimidad pública del transporte más importante de la capital. Es una documentación de la "soledad colectiva": rostros cansados tras la jornada laboral, lectores abstraídos en medio del empujón y parejas que construyen un micro-universo en un rincón del vagón.</p>
+            </div>
+        </section>
+
+        <div class="carousel-container" style="height: 70vh; margin-top: 50px;">
+            <img class="carousel-slide fade" src="assets/img/proyectos/metro/metCarru1.jpg" alt="Metro 1">
+            <img class="carousel-slide fade" src="assets/img/proyectos/metro/metCarru2.jpg" alt="Metro 2">
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <div class="project-nav" style="display: flex; justify-content: flex-start; padding: 40px;">
+            <a href="jamaica.html">&#10094; Jamaica</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-icons-footer">
+            <a href="https://www.instagram.com/eivind_derivas/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@Synthgraf_IA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            <a href="mailto:tuemail@ejemplo.com"><i class="fa-regular fa-envelope"></i></a>
+        </div>
+    </footer>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

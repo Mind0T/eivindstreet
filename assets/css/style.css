@@ -1,0 +1,233 @@
+/* Reset y Variables */
+:root {
+    --bg-color: #000000;
+    --header-gradient-top: #141414;
+    --header-gradient-bottom: #000000;
+    --text-color: #ffffff;
+    --font-main: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    font-weight: 300; /* Texto base fino */
+    overflow-x: hidden;
+}
+
+/* Títulos y Encabezados Globales */
+h1, h2, h3 {
+    font-weight: 900; /* Montserrat Extra Bold */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p {
+    font-weight: 400; /* Montserrat Regular */
+    line-height: 1.8;
+}
+
+/* HEADER - NUEVA DISTRIBUCIÓN */
+header {
+    background: linear-gradient(to bottom, var(--header-gradient-top), var(--header-gradient-bottom));
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between; /* Logo izq, Menu centro, Iconos der */
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-container img {
+    height: 50px; 
+    display: block;
+}
+
+/* MENU CENTRAL */
+nav {
+    flex: 1; /* Ocupa todo el espacio disponible en el medio */
+    display: flex;
+    justify-content: center; /* Centra la lista de enlaces */
+    margin: 0 40px; /* Margen para no pegarse al logo ni iconos */
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 50px; /* Espacio generoso entre palabras para "distribuir" */
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 300; /* DENSIDAD DELGADA */
+    text-transform: none; /* MAYÚSCULAS Y MINÚSCULAS (Quita el uppercase) */
+    letter-spacing: 0.5px;
+    transition: color 0.3s, opacity 0.3s;
+}
+
+nav a:hover {
+    color: #fff;
+    opacity: 0.7;
+}
+
+/* ICONOS DERECHA (HEADER) */
+.header-social {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.header-social a {
+    color: white;
+    font-size: 1.1rem;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.header-social a:hover {
+    color: #ccc;
+    transform: scale(1.1);
+}
+
+/* CONTENEDOR PRINCIPAL */
+main {
+    margin-top: 100px; 
+    min-height: 80vh;
+}
+
+/* CARRUSEL GENERAL */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 80vh; 
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-slide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: none; 
+}
+
+.carousel-slide.active {
+    display: block;
+    animation: fadeEffect 1s;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: 900;
+    font-size: 24px;
+    transition: 0.6s ease;
+    user-select: none;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 3px;
+}
+
+.next { right: 0; }
+.prev { left: 0; }
+.prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
+
+@keyframes fadeEffect {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+/* FOOTER */
+footer {
+    background-color: white;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+footer .social-icons-footer a {
+    color: black; 
+    font-size: 1.5rem;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+footer .social-icons-footer a:hover {
+    color: #555;
+}
+
+/* ESTILOS PROYECTOS PERSONALES */
+.projects-menu {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-image: url('../img/proyectos/general/fondoProy.jpg');
+    transition: background-image 0.5s ease-in-out;
+}
+
+.project-link {
+    font-family: var(--font-main);
+    font-weight: 900; 
+    font-size: 3.5rem; 
+    margin: 15px 0;
+    cursor: pointer;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    text-decoration: none;
+    transition: transform 0.3s, letter-spacing 0.3s;
+}
+
+.project-link:hover {
+    transform: scale(1.05);
+    letter-spacing: 5px; 
+}
+
+/* TEXTO DE PROYECTOS */
+.project-banner-text {
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+}
+.project-banner-text h1 { font-size: 3rem; margin-bottom: 15px;}
+.project-banner-text p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; color: #ccc;}
+
+/* NAVEGACIÓN ENTRE PROYECTOS */
+.project-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+.project-nav a { color: white; text-decoration: none; opacity: 0.7; transition: opacity 0.3s;}
+.project-nav a:hover { opacity: 1; }
+
+/* ESTILOS ESPECÍFICOS PARA VIDEOS */
+.video-section h1 { font-weight: 900; }
+.video-card { border: 1px solid #333; }
+.video-card h3 { font-weight: 700; font-size: 1rem; letter-spacing: 0.5px;}
+
+/* ESTILOS ESPECÍFICOS PARA CURSOS */
+.curso-card .card-content h3 { font-weight: 700; }
+.btn-curso { font-weight: 700; letter-spacing: 1px;}
