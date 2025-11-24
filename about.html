@@ -11,7 +11,8 @@
         .about-banner {
             position: relative;
             width: 100%;
-            height: 100vh; 
+            /* USAMOS MIN-HEIGHT para que se adapte al contenido */
+            min-height: 100vh; 
             background-image: url('assets/img/acerca/bannerAcerca.jpg');
             background-size: cover;
             background-position: center;
@@ -25,10 +26,7 @@
         .about-text {
             position: relative;
             z-index: 2;
-            
-            /* CAMBIO AQUÍ: Alineación a la izquierda */
             text-align: left;
-            
             max-width: 800px;
             padding: 40px;
             color: white;

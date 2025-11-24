@@ -155,9 +155,7 @@ footer .social-icons-footer a:hover { color: #555; }
 .project-link:hover { transform: scale(1.05); letter-spacing: 5px; }
 
 
-/* =========================================================
-   ESTILOS HERO PROYECTO (TEXTOS) - ACTUALIZADO
-   ========================================================= */
+/* ESTILOS HERO PROYECTO (TEXTOS) */
 .project-hero { background-attachment: scroll; }
 
 .hero-text {
@@ -214,16 +212,8 @@ footer .social-icons-footer a:hover { color: #555; }
 
 /* ESTILOS VIDEOS Y CURSOS */
 .cursos-section h1 { font-weight: 900; }
-
-/* CAMBIO AQUÍ: Reducir densidad solo para videos */
-.video-section h1 { 
-    font-weight: 600; /* Semi-bold */
-}
-
-.video-section, .cursos-section {
-    padding-bottom: 200px; 
-}
-
+.video-section h1 { font-weight: 600; }
+.video-section, .cursos-section { padding-bottom: 200px; }
 .video-card { border: 1px solid #333; }
 .video-card h3 { font-weight: 700; font-size: 1rem; letter-spacing: 0.5px;}
 .curso-card .card-content h3 { font-weight: 700; }
@@ -252,10 +242,7 @@ footer .social-icons-footer a:hover { color: #555; }
 .btn-submit:hover { background-color: var(--btn-blue-hover); transform: translateY(-2px); }
 
 /* CONTENEDOR PRINCIPAL */
-main { 
-    margin-top: 100px; 
-    min-height: 90vh; 
-}
+main { margin-top: 100px; min-height: 90vh; }
 
 /* RESPONSIVE */
 @media screen and (max-width: 1024px) {
@@ -274,9 +261,21 @@ main {
     nav ul { flex-direction: column; gap: 15px; width: 100%; padding: 0; }
     .header-social { margin-top: 15px; gap: 30px; }
     .project-link { font-size: 2rem; margin: 25px 0; }
-    
-    .project-carousel-frame {
-        max-width: 100%; 
-        aspect-ratio: 4 / 3; 
+    .project-carousel-frame { max-width: 100%; aspect-ratio: 4 / 3; }
+
+    /* --- CORRECCIONES PARA BANNER Y TEXTO EN MÓVIL --- */
+    .project-hero, .about-banner {
+        height: auto !important; 
+        min-height: 70vh; 
+        padding-bottom: 60px; 
     }
+
+    .hero-text, .about-text {
+        margin-top: 120px; 
+        text-align: left; 
+        padding: 20px; 
+    }
+
+    .hero-text h1, .about-text h1 { font-size: 1.8rem; }
+    .hero-text p, .about-text p { font-size: 1rem; }
 }
