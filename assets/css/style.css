@@ -35,11 +35,8 @@ p {
     line-height: 1.8;
 }
 
-/* =========================================
-   HEADER GLOBAL (Ajustes de Logo y Menú)
-   ========================================= */
+/* HEADER */
 header {
-    /* Fondo por defecto (para páginas que no son transparentes) */
     background: linear-gradient(to bottom, #141414, #000000);
     padding: 20px 40px;
     display: flex;
@@ -52,25 +49,19 @@ header {
     transition: all 0.3s ease;
 }
 
-/* LOGO: Más grande y más a la derecha */
-.logo-container {
-    margin-left: 20px; /* Lo mueve a la derecha */
-}
-
+.logo-container { margin-left: 20px; }
 .logo-container img {
-    height: 70px; /* Creció de 50px a 70px */
+    height: 70px;
     width: auto;
     display: block;
     max-width: 250px;
     object-fit: contain;
-    transition: transform 0.3s;
 }
 
-/* MENU CENTRAL: Redistribución */
 nav {
-    flex: 2; /* Ocupa más espacio disponible para empujar "Cursos" a la derecha */
+    flex: 2;
     display: flex;
-    justify-content: center; /* Centramos el bloque del menú */
+    justify-content: center;
     margin: 0 40px;
 }
 
@@ -78,228 +69,173 @@ nav ul {
     display: flex;
     list-style: none;
     align-items: center;
-    width: 100%;            /* Ocupa todo el ancho del contenedor nav */
-    max-width: 800px;       /* Limitamos el ancho para que no se separen demasiado */
-    justify-content: space-between; /* Home a la izq, Cursos a la der, el resto al centro */
+    width: 100%;
+    max-width: 800px;
+    justify-content: space-between;
 }
 
 nav a {
     text-decoration: none;
     color: var(--text-color);
     font-size: 1rem;
-    font-weight: 400; /* Un poco más de peso para legibilidad sobre fotos */
+    font-weight: 400;
     text-transform: none;
     letter-spacing: 0.5px;
-    text-shadow: 0px 2px 4px rgba(0,0,0,0.5); /* Sombra suave para leer sobre fotos */
+    text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
     transition: color 0.3s, opacity 0.3s;
 }
 
-nav a:hover {
-    color: #fff;
-    opacity: 0.7;
-}
+nav a:hover { color: #fff; opacity: 0.7; }
 
-/* ICONOS DERECHA (HEADER) */
-.header-social {
-    display: flex;
-    gap: 25px;
-    align-items: center;
-}
-
+.header-social { display: flex; gap: 25px; align-items: center; }
 .header-social a {
-    color: white;
-    font-size: 1.1rem;
+    color: white; font-size: 1.1rem;
     transition: transform 0.3s, color 0.3s;
     text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
 }
+.header-social a:hover { color: #ccc; transform: scale(1.1); }
 
-.header-social a:hover {
-    color: #ccc;
-    transform: scale(1.1);
-}
-
-/* CONTENEDOR PRINCIPAL STANDARD */
-main {
-    margin-top: 100px;
-    min-height: 80vh;
-}
-
-/* =========================================
-   MODO TRANSPARENTE (Fusión "Cinematográfica")
-   ========================================= */
-/* Esta clase se añade al BODY en las páginas específicas */
+/* MODO TRANSPARENTE */
 body.transparent-mode header {
-    background: transparent; /* Quitamos el negro sólido */
-    /* Añadimos un degradado de negro a transparente para leer el menú */
+    background: transparent;
     background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%);
     box-shadow: none;
-    padding-top: 30px; /* Un poco más de aire arriba */
+    padding-top: 30px;
 }
+body.transparent-mode main { margin-top: 0 !important; }
 
-/* En modo transparente, el main sube hasta arriba (top 0) */
-body.transparent-mode main {
-    margin-top: 0 !important;
-}
-
-/* Ajustes para que los textos de los banners no queden tapados por el menú */
 body.transparent-mode .project-hero,
 body.transparent-mode .about-banner,
-body.transparent-mode .projects-menu {
-    /* Aseguramos que el contenido empiece visualmente bien aunque la caja empiece en 0 */
-    padding-top: 100px; 
-}
+body.transparent-mode .projects-menu { padding-top: 100px; }
 
-
-/* CARRUSEL GENERAL (Home) */
+/* CARRUSEL GENERAL (HOME) */
 .carousel-container {
-    position: relative;
-    width: 100%;
-    height: 80vh; 
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative; width: 100%; 
+    height: 100vh; /* Pantalla Completa */
+    overflow: hidden; display: flex; align-items: center; justify-content: center;
     background-color: #000; 
 }
-
-.carousel-slide {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    display: none; 
-}
-
-.carousel-slide.active {
-    display: block !important; 
-}
+.carousel-slide { width: 100%; height: 100%; object-fit: cover; display: none; }
+.carousel-slide.active { display: block !important; }
 
 .prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    padding: 16px;
-    margin-top: -22px;
-    color: white;
-    font-weight: 900;
-    font-size: 24px;
-    transition: 0.6s ease;
-    user-select: none;
-    background-color: rgba(0,0,0,0.3);
-    border-radius: 3px;
-    z-index: 10;
+    cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px;
+    margin-top: -22px; color: white; font-weight: 900; font-size: 24px;
+    transition: 0.6s ease; user-select: none; background-color: rgba(0,0,0,0.3);
+    border-radius: 3px; z-index: 10;
 }
-
-.next { right: 0; }
-.prev { left: 0; }
+.next { right: 0; } .prev { left: 0; }
 .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
 
-/* FOOTER */
+/* FOOTER GLOBAL */
 footer {
     background-color: white;
     padding: 40px 20px;
     text-align: center;
+    margin: 0; 
+}
+footer .social-icons-footer a { color: black; font-size: 1.5rem; margin: 0 15px; transition: color 0.3s; }
+footer .social-icons-footer a:hover { color: #555; }
+
+/* ESTILOS PROYECTOS MENU */
+.projects-menu {
+    height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    background-size: cover; background-position: center;
+    background-image: url('../img/proyectos/general/fondoProy.jpg');
+    transition: background-image 0.5s ease-in-out; text-align: center;
+}
+.project-link {
+    font-family: var(--font-main); font-weight: 900; font-size: 3.5rem; 
+    margin: 15px 0; cursor: pointer; color: white;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8); text-decoration: none;
+    transition: transform 0.3s, letter-spacing 0.3s;
+}
+.project-link-dark { font-weight: 300 !important; color: #000000 !important; text-shadow: none !important; }
+.project-link:hover { transform: scale(1.05); letter-spacing: 5px; }
+
+
+/* =========================================================
+   ESTILOS HERO PROYECTO (TEXTOS) - ACTUALIZADO
+   ========================================================= */
+.project-hero { background-attachment: scroll; }
+
+.hero-text {
+    position: relative; 
+    z-index: 2; 
+    text-align: left; 
+    max-width: 900px; 
+    padding: 20px; 
     margin-top: 50px;
 }
 
-footer .social-icons-footer a {
-    color: black; 
-    font-size: 1.5rem;
-    margin: 0 15px;
-    transition: color 0.3s;
+.hero-text h1 { 
+    font-size: 2.5rem;
+    font-weight: 600; 
+    margin-bottom: 20px; 
+    text-transform: uppercase; 
 }
 
-footer .social-icons-footer a:hover {
-    color: #555;
+.hero-text p { 
+    font-size: 1.1rem; 
+    line-height: 1.6; 
+    margin-bottom: 10px; 
+    color: #ddd;
 }
 
-/* ESTILOS PROYECTOS PERSONALES */
-.projects-menu {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-size: cover;
-    background-position: center;
-    background-image: url('../img/proyectos/general/fondoProy.jpg');
-    transition: background-image 0.5s ease-in-out;
-    text-align: center;
-}
 
-.project-link {
-    font-family: var(--font-main);
-    font-weight: 900; 
-    font-size: 3.5rem; 
-    margin: 15px 0;
-    cursor: pointer;
-    color: white;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-    text-decoration: none;
-    transition: transform 0.3s, letter-spacing 0.3s;
+/* ESTILOS PROYECTOS FONDO BLANCO & CARRUSEL 5x7 */
+.project-white-area {
+    background-color: #ffffff;
+    width: 100%;
+    padding: 60px 20px; 
+    display: flex; flex-direction: column; align-items: center;
+    min-height: 60vh;
 }
-
-.project-link-dark {
-    font-weight: 300 !important; 
-    color: #000000 !important;   
-    text-shadow: none !important; 
+.project-carousel-frame {
+    position: relative; width: 100%; max-width: 850px;
+    height: auto !important; aspect-ratio: 7 / 5; 
+    margin: 0 auto; overflow: hidden; background-color: #f0f0f0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
+.project-carousel-frame .carousel-slide { width: 100%; height: 100%; object-fit: cover; display: none; }
+.project-carousel-frame .prev, .project-carousel-frame .next { color: #000; background-color: transparent; font-size: 2rem; }
+.project-carousel-frame .prev:hover, .project-carousel-frame .next:hover { background-color: rgba(0,0,0,0.05); }
 
-.project-link:hover {
-    transform: scale(1.05);
-    letter-spacing: 5px; 
+.project-nav-thin {
+    width: 100%; max-width: 900px; display: flex; justify-content: space-between;
+    margin-top: 40px; padding: 0 20px;
 }
-
-/* TEXTO DE PROYECTOS */
-.project-hero {
-    background-attachment: scroll; 
+.project-nav-thin a {
+    text-decoration: none; color: #000000; font-family: var(--font-main);
+    font-weight: 300; font-size: 1.2rem; text-transform: uppercase; transition: opacity 0.3s;
 }
-
-.hero-text {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: 900px;
-    padding: 20px;
-    margin-top: 50px; /* Para bajar el texto un poco más */
-}
-
-.hero-text h1 { font-size: 3rem; margin-bottom: 20px; text-transform: uppercase; }
-.hero-text p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 10px; color: #ddd;}
-
-/* NAVEGACIÓN ENTRE PROYECTOS */
-.project-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 40px;
-    font-size: 1.1rem;
-    font-weight: 700;
-}
-.project-nav a { color: white; text-decoration: none; opacity: 0.7; transition: opacity 0.3s;}
-.project-nav a:hover { opacity: 1; }
+.project-nav-thin a:hover { opacity: 0.6; }
 
 /* ESTILOS VIDEOS Y CURSOS */
-.video-section h1, .cursos-section h1 { font-weight: 900; }
+.cursos-section h1 { font-weight: 900; }
+
+/* CAMBIO AQUÍ: Reducir densidad solo para videos */
+.video-section h1 { 
+    font-weight: 600; /* Semi-bold */
+}
+
+.video-section, .cursos-section {
+    padding-bottom: 200px; 
+}
+
 .video-card { border: 1px solid #333; }
 .video-card h3 { font-weight: 700; font-size: 1rem; letter-spacing: 0.5px;}
 .curso-card .card-content h3 { font-weight: 700; }
 .btn-curso { font-weight: 700; letter-spacing: 1px;}
 
-
-/* ESTILOS CONTACTO */
-.contact-section {
-    padding: 50px 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
+/* CONTACTO */
+.contact-section { padding: 50px 20px; max-width: 800px; margin: 0 auto; }
 .contact-section h1 { text-align: center; margin-bottom: 20px; }
 .contact-section > p { text-align: center; margin-bottom: 40px; color: #ccc; }
-
 .contact-form { display: flex; flex-direction: column; gap: 25px; }
 .form-group { text-align: left; }
 .form-group label { display: block; margin-bottom: 10px; font-weight: 900; color: #fff; font-size: 1.1rem; }
-
 .form-group input, .form-group textarea {
     width: 100%; padding: 15px; background-color: var(--input-bg);
     border: 1px solid var(--input-border); color: #fff;
@@ -307,7 +243,6 @@ footer .social-icons-footer a:hover {
     transition: border-color 0.3s;
 }
 .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #666; }
-
 .btn-submit {
     width: 100%; padding: 18px 20px; background-color: var(--btn-blue);
     color: #fff; border: none; font-weight: 900; text-transform: uppercase;
@@ -316,16 +251,21 @@ footer .social-icons-footer a:hover {
 }
 .btn-submit:hover { background-color: var(--btn-blue-hover); transform: translateY(-2px); }
 
+/* CONTENEDOR PRINCIPAL */
+main { 
+    margin-top: 100px; 
+    min-height: 90vh; 
+}
+
 /* RESPONSIVE */
 @media screen and (max-width: 1024px) {
     header { padding: 15px 20px; }
-    nav ul { gap: 20px; max-width: 100%; } /* En tablets reducimos espacio */
+    nav ul { gap: 20px; max-width: 100%; } 
     .logo-container img { height: 50px; }
 }
 
 @media screen and (max-width: 768px) {
     header { position: relative; flex-direction: column; padding: 20px; background: #141414 !important; height: auto; }
-    /* En movil quitamos transparencia para evitar problemas de lectura */
     body.transparent-mode header { background: #141414 !important; }
     body.transparent-mode main { margin-top: 0; }
     
@@ -334,4 +274,9 @@ footer .social-icons-footer a:hover {
     nav ul { flex-direction: column; gap: 15px; width: 100%; padding: 0; }
     .header-social { margin-top: 15px; gap: 30px; }
     .project-link { font-size: 2rem; margin: 25px 0; }
+    
+    .project-carousel-frame {
+        max-width: 100%; 
+        aspect-ratio: 4 / 3; 
+    }
 }

@@ -8,33 +8,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        /* Ajuste de altura para que se vea impresionante al inicio */
         .project-hero {
-            position: relative;
-            width: 100%;
-            height: 100vh; /* Ocupa toda la pantalla */
+            position: relative; 
+            width: 100%; 
+            /* CAMBIO AQUÍ: Mitad de pantalla */
+            height: 50vh; 
             background-image: url('assets/img/proyectos/iztapalapa/bannerIzt.jpg');
-            background-size: cover;
+            background-size: cover; 
             background-position: center;
-            display: flex;
-            align-items: center;
+            display: flex; 
+            align-items: center; 
             justify-content: center;
         }
         .project-hero::before {
-            content: '';
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.3); /* Un poco menos oscuro para que luzca la foto */
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
+            background: rgba(0,0,0,0.4); 
         }
-        /* El texto ya tiene estilo en style.css pero aquí reforzamos */
     </style>
 </head>
 <body class="transparent-mode">
 
     <header>
-        <div class="logo-container">
-            <a href="index.html"><img src="assets/img/general/logo.png" alt="Eivinderivas Logo"></a>
-        </div>
-        
+        <div class="logo-container"><a href="index.html"><img src="assets/img/general/logo.png" alt="Eivinderivas"></a></div>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -44,7 +39,6 @@
                 <li><a href="cursos.html">Cursos</a></li>
             </ul>
         </nav>
-
         <div class="header-social">
             <a href="https://www.instagram.com/eivind_derivas/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
             <a href="contacto.html"><i class="fa-regular fa-envelope"></i></a>
@@ -65,19 +59,22 @@
             </div>
         </section>
 
-        <div class="carousel-container" style="height: 70vh; margin-top: 50px;">
-            <img class="carousel-slide active" src="assets/img/proyectos/iztapalapa/iztaCarru1.jpg" alt="Iztapalapa 1" style="display: block;">
-            <img class="carousel-slide" src="assets/img/proyectos/iztapalapa/iztaCarru2.jpg" alt="Iztapalapa 2">
-            <img class="carousel-slide" src="assets/img/proyectos/iztapalapa/iztaCarru3.jpg" alt="Iztapalapa 3">
-            <img class="carousel-slide" src="assets/img/proyectos/iztapalapa/iztaCarru4.jpg" alt="Iztapalapa 4">
-            <img class="carousel-slide" src="assets/img/proyectos/iztapalapa/iztaCarru5.jpg" alt="Iztapalapa 5">
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
+        <section class="project-white-area">
+            <div class="carousel-container project-carousel-frame">
+                <img class="carousel-slide active" src="assets/img/proyectos/iztapalapa/iztaCarru1.jpg" alt="Iztapalapa 1" style="display: block;">
+                <img class="carousel-slide" src="assets/img/proyectos/iztapalapa/iztaCarru2.jpg" alt="Iztapalapa 2">
+                <img class="carousel-slide" src="assets/img/proyectos/iztapalapa/iztaCarru3.jpg" alt="Iztapalapa 3">
+                <img class="carousel-slide" src="assets/img/proyectos/iztapalapa/iztaCarru4.jpg" alt="Iztapalapa 4">
+                <img class="carousel-slide" src="assets/img/proyectos/iztapalapa/iztaCarru5.jpg" alt="Iztapalapa 5">
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
 
-        <div class="project-nav" style="text-align: right;">
-            <a href="jamaica.html" style="margin-left: auto;">Jamaica &#10095;</a>
-        </div>
+            <div class="project-nav-thin">
+                <div></div> 
+                <a href="jamaica.html">Jamaica &#10095;</a>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -87,7 +84,6 @@
             <a href="contacto.html"><i class="fa-regular fa-envelope"></i></a>
         </div>
     </footer>
-
     <script src="assets/js/script.js"></script>
 </body>
 </html>
