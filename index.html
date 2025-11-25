@@ -55,11 +55,7 @@
     </header>
 
     <main>
-        <div class="carousel-container">
-            <img class="carousel-slide active" src="assets/img/carruselHOME/carru1.jpg" alt="Foto 1" style="display: block;">
-            <img class="carousel-slide" src="assets/img/carruselHOME/carru2.jpg" alt="Foto 2">
-            <img class="carousel-slide" src="assets/img/carruselHOME/carru3.jpg" alt="Foto 3">
-            <img class="carousel-slide" src="assets/img/carruselHOME/carru4.jpg" alt="Foto 4">
+        <div class="carousel-container" id="home-carousel">
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
@@ -72,6 +68,30 @@
             <a href="contacto.html"><i class="fa-regular fa-envelope"></i></a>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById('home-carousel');
+            const prevBtn = container.querySelector('.prev');
+            
+            // Generar 8 imágenes: carru1.jpg a carru8.jpg
+            for (let i = 1; i <= 8; i++) {
+                const img = document.createElement('img');
+                img.className = 'carousel-slide';
+                img.src = `assets/img/carruselHOME/carru${i}.jpg`;
+                img.alt = `Foto Home ${i}`;
+                
+                // La primera imagen debe ser visible (active)
+                if (i === 1) {
+                    img.classList.add('active');
+                    img.style.display = 'block';
+                }
+                
+                // Insertar antes del botón 'prev'
+                container.insertBefore(img, prevBtn);
+            }
+        });
+    </script>
 
     <script src="assets/js/script.js"></script>
 </body>
