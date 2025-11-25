@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eivinderivas - Chinampac de Juárez</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .project-hero {
+            position: relative; width: 100%; min-height: 50vh; 
+            /* Banner específico para Chinampac */
+            background-image: url('assets/img/proyectos/chinampacdejuarez/bannerChin.jpg');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .project-hero::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="transparent-mode">
+
+    <header>
+        <div class="logo-container"><a href="index.html"><img src="assets/img/general/logo.png" alt="Eivinderivas"></a></div>
+        <div class="menu-toggle" id="mobile-menu-btn"><span></span><span></span><span></span></div>
+
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="proyectosPersonales.html">Proyectos Personales</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="about.html">Acerca de mi</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+            </ul>
+        </nav>
+        <div class="header-social desktop-social">
+            <a href="https://www.instagram.com/eivind_derivas/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="contacto.html"><i class="fa-regular fa-envelope"></i></a>
+            <a href="https://www.youtube.com/@Synthgraf_IA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+
+        <div class="mobile-menu-overlay" id="mobile-menu">
+            <button class="close-menu" id="close-menu-btn" style="background:none; border:none; color:white; font-size:3rem; position:absolute; top:20px; right:30px; cursor:pointer;">&times;</button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="proyectosPersonales.html">Proyectos Personales</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="about.html">Acerca de mi</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+            </ul>
+            <div class="mobile-social">
+                <a href="https://www.instagram.com/eivind_derivas/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@Synthgraf_IA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="contacto.html"><i class="fa-regular fa-envelope"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="hero-text">
+                <h1>Chinampac de Juárez</h1>
+                <p>
+                    "He caminado estas calles por 34 años, pero nunca las había visto con ojos de fotógrafo hasta ahora. La Chinampac nació como una respuesta masiva de vivienda en los años 70, convirtiéndose en una 'ciudad dentro de la ciudad'.
+                </p>
+                <p>
+                    En esta serie combino dos mundos: la escala monumental vista desde el cielo y las historias íntimas que suceden a nivel de calle. Es mi intento de documentar la esencia de un lugar que, aunque inmenso y caótico, sigue siendo mi hogar."
+                </p>
+            </div>
+        </section>
+
+        <section class="project-white-area">
+            <div class="carousel-container project-carousel-frame" id="dynamic-carousel">
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+
+            <div class="project-nav-thin">
+                <a href="proyectosPersonales.html">&#10094; Menú</a> 
+                <a href="iztapalapa.html">Iztapalapa &#10095;</a>
+            </div>
+        </section>
+    </main>
+
+    <div id="myLightbox" class="lightbox">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <a class="lightbox-prev" onclick="plusLightboxSlides(-1)">&#10094;</a>
+        <a class="lightbox-next" onclick="plusLightboxSlides(1)">&#10095;</a>
+    </div>
+
+    <footer>
+        <div class="social-icons-footer">
+            <a href="https://www.instagram.com/eivind_derivas/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@Synthgraf_IA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            <a href="contacto.html"><i class="fa-regular fa-envelope"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById('dynamic-carousel');
+            const prevBtn = container.querySelector('.prev');
+            
+            // Bucle actualizado para crear las 41 imágenes
+            for (let i = 1; i <= 41; i++) {
+                const img = document.createElement('img');
+                img.className = 'carousel-slide';
+                // Asigna la ruta: chinCarru1.jpg ... chinCarru41.jpg
+                img.src = `assets/img/proyectos/chinampacdejuarez/chinCarru${i}.jpg`;
+                img.alt = `Chinampac foto ${i}`;
+                
+                // La primera imagen debe ser visible por defecto
+                if (i === 1) {
+                    img.classList.add('active');
+                    img.style.display = 'block';
+                }
+                
+                // Agrega la función para abrir el lightbox al hacer clic
+                img.setAttribute('onclick', `openLightbox(${i})`);
+                
+                // Inserta la imagen antes del botón 'prev' para mantener el orden del HTML
+                container.insertBefore(img, prevBtn);
+            }
+        });
+    </script>
+    
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
