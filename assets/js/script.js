@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
     
     const slides = document.getElementsByClassName("carousel-slide");
     
-    if (slides.length > 0) {
+    // Solo iniciar autoplay si existen slides en la página (para el Home)
+    if (slides.length > 0 && document.getElementById('home-carousel')) {
         showSlides(slideIndex);
         startAutoSlide();
     }
@@ -73,13 +74,12 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // --- LÓGICA LIGHTBOX (VISOR PANTALLA COMPLETA) ---
-    // Esta lógica es independiente. No tiene autoplay.
     let lightboxIndex = 1;
 
     window.openLightbox = function(n) {
         const lightbox = document.getElementById('myLightbox');
         if(lightbox) {
-            lightbox.style.display = "flex"; // Flex para centrar
+            lightbox.style.display = "flex";
             lightbox.style.justifyContent = "center";
             lightbox.style.alignItems = "center";
             currentLightboxSlide(n);
@@ -102,9 +102,14 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     function showLightboxSlides(n) {
-        // Buscamos las imágenes ORIGINALES del carrusel de la página para copiarlas al visor
-        // NOTA: Usamos el selector específico del carrusel de proyectos
-        const originalImages = document.querySelectorAll('.project-carousel-frame .carousel-slide');
+        // Intenta buscar imágenes del carrusel antiguo
+        let originalImages = document.querySelectorAll('.project-carousel-frame .carousel-slide');
+        
+        // Si no hay, busca imágenes de la nueva galería scroll
+        if (originalImages.length === 0) {
+            originalImages = document.querySelectorAll('.scroll-gallery-container .gallery-item');
+        }
+
         const lightboxImg = document.getElementById("lightbox-img");
 
         if (!originalImages.length || !lightboxImg) return;
@@ -112,7 +117,64 @@ document.addEventListener("DOMContentLoaded", function() {
         if (n > originalImages.length) {lightboxIndex = 1}
         if (n < 1) {lightboxIndex = originalImages.length}
 
-        // Tomamos la fuente (src) de la imagen original correspondiente y la ponemos en el visor
+        // Asignar src al visor
         lightboxImg.src = originalImages[lightboxIndex-1].src;
     }
+
+    // --- LÓGICA DE GALERÍA SCROLL (EDITORIAL) ---
+    // Esta función inicializa la galería vertical con animaciones
+    window.initScrollGallery = function(folderPath, imagePrefix, totalImages) {
+        const container = document.getElementById('scroll-gallery');
+        if (!container) return;
+
+        // Intersection Observer para animaciones
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15 
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        for (let i = 1; i <= totalImages; i++) {
+            const img = document.createElement('img');
+            img.src = `${folderPath}/${imagePrefix}${i}.jpg`;
+            img.alt = `Foto ${i}`;
+            img.className = 'gallery-item';
+            
+            // Evento para abrir el lightbox
+            img.onclick = function() { openLightbox(i); };
+
+            // Detectar orientación al cargar
+            img.onload = function() {
+                const isPortrait = this.naturalHeight > this.naturalWidth;
+
+                if (isPortrait) {
+                    this.classList.add('is-portrait');
+                    // Aleatoriedad para verticales: Izq, Centro, Der
+                    const randomPos = Math.random();
+                    if (randomPos < 0.33) {
+                        this.classList.add('align-left');
+                    } else if (randomPos < 0.66) {
+                        this.classList.add('align-center');
+                    } else {
+                        this.classList.add('align-right');
+                    }
+                } else {
+                    this.classList.add('is-landscape');
+                    this.classList.add('align-center');
+                }
+            };
+
+            container.appendChild(img);
+            observer.observe(img);
+        }
+    };
 });

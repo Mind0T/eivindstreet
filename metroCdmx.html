@@ -67,12 +67,7 @@
         </section>
 
         <section class="project-white-area">
-            <div class="carousel-container project-carousel-frame">
-                <img class="carousel-slide active" src="assets/img/proyectos/metro/metCarru1.jpg" alt="Metro 1" style="display: block;" onclick="openLightbox(1)">
-                <img class="carousel-slide" src="assets/img/proyectos/metro/metCarru2.jpg" alt="Metro 2" onclick="openLightbox(2)">
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            </div>
+            <div id="scroll-gallery" class="scroll-gallery-container"></div>
 
             <div class="project-nav-thin">
                 <a href="jamaica.html">&#10094; Jamaica</a>
@@ -96,5 +91,11 @@
         </div>
     </footer>
     <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Inicializar galería Metro (2 fotos - ajusta el número si tienes más)
+            initScrollGallery('assets/img/proyectos/metro', 'metCarru', 2);
+        });
+    </script>
 </body>
 </html>

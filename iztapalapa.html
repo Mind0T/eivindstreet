@@ -71,10 +71,7 @@
         </section>
 
         <section class="project-white-area">
-            <div class="carousel-container project-carousel-frame" id="dynamic-carousel">
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            </div>
+            <div id="scroll-gallery" class="scroll-gallery-container"></div>
 
             <div class="project-nav-thin">
                 <a href="chinampacdejuarez.html">&#10094; Chinampac de Juárez</a>
@@ -98,34 +95,12 @@
         </div>
     </footer>
 
+    <script src="assets/js/script.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const container = document.getElementById('dynamic-carousel');
-            const prevBtn = container.querySelector('.prev');
-            
-            // Bucle para crear las 19 imágenes
-            for (let i = 1; i <= 19; i++) {
-                const img = document.createElement('img');
-                img.className = 'carousel-slide';
-                // Asigna la ruta: iztaCarru1.jpg ... iztaCarru19.jpg
-                img.src = `assets/img/proyectos/iztapalapa/iztaCarru${i}.jpg`;
-                img.alt = `Iztapalapa foto ${i}`;
-                
-                // La primera imagen debe ser visible por defecto
-                if (i === 1) {
-                    img.classList.add('active');
-                    img.style.display = 'block';
-                }
-                
-                // Agrega la función para abrir el lightbox al hacer clic
-                img.setAttribute('onclick', `openLightbox(${i})`);
-                
-                // Inserta la imagen antes del botón 'prev' para mantener el orden
-                container.insertBefore(img, prevBtn);
-            }
+            // Inicializar galería Iztapalapa (19 fotos)
+            initScrollGallery('assets/img/proyectos/iztapalapa', 'iztaCarru', 19);
         });
     </script>
-
-    <script src="assets/js/script.js"></script>
 </body>
 </html>

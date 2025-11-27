@@ -245,11 +245,8 @@ footer .social-icons-footer a:hover { color: #555; }
     position: relative; 
     z-index: 2; 
     text-align: left; 
-    
-    /* CAMBIO: Ancho expandido para desktop */
     width: 90%;
     max-width: 1400px; 
-    
     padding: 20px; 
     margin-top: 50px;
 }
@@ -269,7 +266,7 @@ footer .social-icons-footer a:hover { color: #555; }
 }
 
 
-/* ESTILOS ESPECÍFICOS ACERCA DE MI (Movidos desde about.html a CSS) */
+/* ESTILOS ESPECÍFICOS ACERCA DE MI */
 .about-banner {
     position: relative; width: 100%; min-height: 100vh; 
     background-image: url('../img/acerca/bannerAcerca.jpg');
@@ -282,10 +279,8 @@ footer .social-icons-footer a:hover { color: #555; }
 
 .about-text {
     position: relative; z-index: 2; text-align: left;
-    /* CAMBIO: Ancho expandido para desktop */
     width: 90%;
     max-width: 1400px; 
-    
     padding: 40px; color: white; margin-top: 60px; 
 }
 .about-text p {
@@ -300,7 +295,7 @@ footer .social-icons-footer a:hover { color: #555; }
 }
 
 
-/* ESTILOS PROYECTOS FONDO BLANCO & CARRUSEL 5x7 */
+/* ESTILOS PROYECTOS FONDO BLANCO & CARRUSEL (Estilos legacy por si se usan en otro lado) */
 .project-white-area {
     background-color: #ffffff;
     width: 100%;
@@ -460,15 +455,97 @@ main { margin-top: 100px; min-height: 90vh; }
     }
     .hero-text, .about-text {
         margin-top: 100px; text-align: left; padding: 20px; 
-        
-        /* En móvil regresamos al ancho completo para que no se vea apretado */
-        width: 100%;
-        max-width: 100%;
-        
+        width: 100%; max-width: 100%;
         background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); 
     }
     .hero-text h1, .about-text h1 { font-size: 1.8rem; }
     .hero-text p, .about-text p { font-size: 1rem; }
     .project-link { font-size: 2rem; margin: 25px 0; }
     .project-carousel-frame { max-width: 100%; aspect-ratio: 4 / 3; }
+}
+
+/* =========================================================
+   NUEVA GALERÍA SCROLL (EDITORIAL / VERTICAL)
+   ========================================================= */
+
+/* Contenedor principal de las fotos */
+.scroll-gallery-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 20px 0;
+    gap: 60px; /* Espacio vertical entre fotos */
+}
+
+/* Estilo base de cada imagen */
+.gallery-item {
+    display: block;
+    max-width: 80%; /* Por defecto para horizontales */
+    height: auto;
+    cursor: zoom-in;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    
+    /* PREPARACIÓN ANIMACIÓN */
+    opacity: 0;
+    transform: translateY(100px) scale(0.98); 
+    transition: opacity 1s ease-out, transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
+}
+
+/* CLASE ACTIVA: Se añade con JS cuando la foto entra en pantalla */
+.gallery-item.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* --- ALINEACIONES (Solo Desktop) --- */
+.align-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.align-left {
+    margin-right: auto;
+    margin-left: 10%; 
+}
+
+.align-right {
+    margin-left: auto;
+    margin-right: 10%; 
+}
+
+/* Verticales (Portraits) en Desktop */
+.gallery-item.is-portrait {
+    max-width: 45%; 
+}
+
+/* Horizontales (Landscapes) en Desktop */
+.gallery-item.is-landscape {
+    max-width: 85%;
+}
+
+
+/* --- RESPONSIVE (MÓVIL) PARA GALERÍA SCROLL --- */
+@media screen and (max-width: 768px) {
+    .scroll-gallery-container {
+        gap: 40px;
+    }
+
+    /* En móvil TODAS centradas */
+    .align-left, .align-right, .align-center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Horizontales en móvil */
+    .gallery-item.is-landscape {
+        max-width: 95%; 
+    }
+
+    /* Verticales en móvil: Márgenes grandes a los costados */
+    .gallery-item.is-portrait {
+        max-width: 70%; 
+    }
 }
