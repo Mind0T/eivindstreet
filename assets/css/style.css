@@ -37,18 +37,11 @@ p {
 
 /* ==========================================================================
    HEADER GENERAL (HOME, VIDEOS, CURSOS, CONTACTO)
-   Recupera el fondo oscuro original pero con la NUEVA ALTURA (30px padding)
    ========================================================================== */
 header {
-    /* Fondo oscuro original */
     background: linear-gradient(to bottom, #141414, #000000);
-    
-    /* Sin sombra en el modo original (o puedes agregarla si quieres) */
     box-shadow: none;
-
-    /* ALTURA UNIFICADA: 30px padding para todas las páginas */
     padding: 30px 40px;
-    
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -90,7 +83,7 @@ header {
     text-decoration: none;
     color: var(--text-color);
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 300; 
     text-transform: none;
     letter-spacing: 0.5px;
     text-shadow: 0px 2px 5px rgba(0,0,0,0.9);
@@ -128,8 +121,8 @@ header {
     width: 25px; 
     height: 2px; 
     background-color: white;
-    border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    border-radius: 0; 
+    box-shadow: none;
     transition: all 0.3s ease;
 }
 
@@ -162,7 +155,7 @@ header {
     color: white;
     font-size: 1.5rem;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 600; 
     text-transform: uppercase;
 }
 
@@ -176,21 +169,14 @@ header {
 
 /* ==========================================================================
    HEADER TRANSPARENT MODE (PROYECTOS, CHINAMPAC, IZT, JAM, MET, ABOUT)
-   Aquí aplicamos el degradado sutil gris invertido al 20% de opacidad
    ========================================================================== */
 body.transparent-mode header {
-    /* Degradado sutil: Transparente hasta el 60%, luego gris 20% abajo */
     background: linear-gradient(to bottom, rgba(58, 58, 58, 0) 60%, rgba(58, 58, 58, 0.2) 100%) !important;
-    
-    /* Sombra sutil */
     box-shadow: 0px 10px 20px -5px rgba(0,0,0,0.2);
-    
-    /* Mismo padding que el header general para mantener consistencia */
     padding-top: 30px;
     padding-bottom: 30px; 
 }
 
-/* Ajustes de margen superior para el modo transparente */
 body.transparent-mode main { margin-top: 0 !important; }
 
 body.transparent-mode .project-hero,
@@ -252,14 +238,18 @@ footer .social-icons-footer a:hover { color: #555; }
 .project-link:hover { transform: scale(1.05); letter-spacing: 5px; }
 
 
-/* ESTILOS HERO PROYECTO (TEXTOS) */
+/* ESTILOS HERO PROYECTO (TEXTOS) - APLICADO A CHINAMPAC, IZTA, METRO, JAMAICA */
 .project-hero { background-attachment: scroll; }
 
 .hero-text {
     position: relative; 
     z-index: 2; 
     text-align: left; 
-    max-width: 900px; 
+    
+    /* CAMBIO: Ancho expandido para desktop */
+    width: 90%;
+    max-width: 1400px; 
+    
     padding: 20px; 
     margin-top: 50px;
 }
@@ -276,6 +266,37 @@ footer .social-icons-footer a:hover { color: #555; }
     line-height: 1.6; 
     margin-bottom: 10px; 
     color: #ddd;
+}
+
+
+/* ESTILOS ESPECÍFICOS ACERCA DE MI (Movidos desde about.html a CSS) */
+.about-banner {
+    position: relative; width: 100%; min-height: 100vh; 
+    background-image: url('../img/acerca/bannerAcerca.jpg');
+    background-size: cover; background-position: center;
+    display: flex; align-items: center; justify-content: center;
+}
+.about-banner::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6);
+}
+
+.about-text {
+    position: relative; z-index: 2; text-align: left;
+    /* CAMBIO: Ancho expandido para desktop */
+    width: 90%;
+    max-width: 1400px; 
+    
+    padding: 40px; color: white; margin-top: 60px; 
+}
+.about-text p {
+    font-size: 1.2rem; line-height: 1.8; margin-bottom: 20px;
+}
+.profile-photo-section {
+    padding: 50px 0; text-align: center; background-color: #000;
+}
+.profile-photo-section img {
+    max-width: 400px; border-radius: 5px; 
+    box-shadow: 0 4px 15px rgba(255,255,255,0.1);
 }
 
 
@@ -422,7 +443,6 @@ main { margin-top: 100px; min-height: 90vh; }
 
 @media screen and (max-width: 768px) {
     header { padding: 20px; height: auto; }
-    /* Para móvil en transparent-mode, mantenemos el mismo estilo sutil */
     body.transparent-mode header { 
         background: linear-gradient(to bottom, rgba(58, 58, 58, 0) 60%, rgba(58, 58, 58, 0.2) 100%) !important;
     }
@@ -439,7 +459,12 @@ main { margin-top: 100px; min-height: 90vh; }
         height: auto !important; min-height: 60vh; padding-bottom: 60px; align-items: flex-end; 
     }
     .hero-text, .about-text {
-        margin-top: 100px; text-align: left; padding: 20px; width: 100%;
+        margin-top: 100px; text-align: left; padding: 20px; 
+        
+        /* En móvil regresamos al ancho completo para que no se vea apretado */
+        width: 100%;
+        max-width: 100%;
+        
         background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); 
     }
     .hero-text h1, .about-text h1 { font-size: 1.8rem; }
