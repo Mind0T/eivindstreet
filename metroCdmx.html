@@ -68,7 +68,6 @@
 
         <section class="project-white-area">
             <div id="scroll-gallery" class="scroll-gallery-container"></div>
-
             <div class="project-nav-thin">
                 <a href="jamaica.html">&#10094; Jamaica</a>
                 <div></div>
@@ -83,6 +82,8 @@
         <a class="lightbox-next" onclick="plusLightboxSlides(1)">&#10095;</a>
     </div>
 
+    <button id="backToTop" title="Volver al inicio"><i class="fa-solid fa-arrow-up"></i></button>
+
     <footer>
         <div class="social-icons-footer">
             <a href="https://www.instagram.com/eivind_derivas/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
@@ -90,10 +91,10 @@
             <a href="contacto.html"><i class="fa-regular fa-envelope"></i></a>
         </div>
     </footer>
+
     <script src="assets/js/script.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Inicializar galería Metro (2 fotos - ajusta el número si tienes más)
             initScrollGallery('assets/img/proyectos/metro', 'metCarru', 2);
         });
     </script>
