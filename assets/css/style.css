@@ -35,10 +35,20 @@ p {
     line-height: 1.8;
 }
 
-/* HEADER */
+/* ==========================================================================
+   HEADER GENERAL (HOME, VIDEOS, CURSOS, CONTACTO)
+   Recupera el fondo oscuro original pero con la NUEVA ALTURA (30px padding)
+   ========================================================================== */
 header {
+    /* Fondo oscuro original */
     background: linear-gradient(to bottom, #141414, #000000);
-    padding: 20px 40px;
+    
+    /* Sin sombra en el modo original (o puedes agregarla si quieres) */
+    box-shadow: none;
+
+    /* ALTURA UNIFICADA: 30px padding para todas las páginas */
+    padding: 30px 40px;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -56,6 +66,7 @@ header {
     display: block;
     max-width: 250px;
     object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
 
 /* Navegación Desktop */
@@ -82,11 +93,11 @@ header {
     font-weight: 400;
     text-transform: none;
     letter-spacing: 0.5px;
-    text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 0px 2px 5px rgba(0,0,0,0.9);
     transition: color 0.3s, opacity 0.3s;
 }
 
-.desktop-nav a:hover { color: #fff; opacity: 0.7; }
+.desktop-nav a:hover { color: #fff; opacity: 0.8; }
 
 /* Redes Sociales Desktop */
 .desktop-social {
@@ -98,7 +109,7 @@ header {
 .header-social a {
     color: white; font-size: 1.1rem;
     transition: transform 0.3s, color 0.3s;
-    text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 0px 2px 5px rgba(0,0,0,0.9);
 }
 .header-social a:hover { color: #ccc; transform: scale(1.1); }
 
@@ -118,6 +129,7 @@ header {
     height: 2px; 
     background-color: white;
     border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.8);
     transition: all 0.3s ease;
 }
 
@@ -162,28 +174,36 @@ header {
 
 .mobile-social a { font-size: 1.8rem; }
 
-/* MODO TRANSPARENTE */
+/* ==========================================================================
+   HEADER TRANSPARENT MODE (PROYECTOS, CHINAMPAC, IZT, JAM, MET, ABOUT)
+   Aquí aplicamos el degradado sutil gris invertido al 20% de opacidad
+   ========================================================================== */
 body.transparent-mode header {
-    background: transparent;
-    background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%);
-    box-shadow: none;
+    /* Degradado sutil: Transparente hasta el 60%, luego gris 20% abajo */
+    background: linear-gradient(to bottom, rgba(58, 58, 58, 0) 60%, rgba(58, 58, 58, 0.2) 100%) !important;
+    
+    /* Sombra sutil */
+    box-shadow: 0px 10px 20px -5px rgba(0,0,0,0.2);
+    
+    /* Mismo padding que el header general para mantener consistencia */
     padding-top: 30px;
+    padding-bottom: 30px; 
 }
+
+/* Ajustes de margen superior para el modo transparente */
 body.transparent-mode main { margin-top: 0 !important; }
 
 body.transparent-mode .project-hero,
 body.transparent-mode .about-banner,
 body.transparent-mode .projects-menu { padding-top: 100px; }
 
+
 /* CARRUSEL GENERAL (HOME) */
 .carousel-container {
     position: relative; 
-    /* CAMBIO: Ancho al 95% para dejar margen a los lados en PC */
     width: 95%; 
-    max-width: 1800px; /* Limite para pantallas gigantes */
-    /* CAMBIO: Margen automático para centrar el bloque */
+    max-width: 1800px; 
     margin: 0 auto; 
-    /* CAMBIO: Altura ajustada a 85vh para que se vea más estético con bordes */
     height: 85vh; 
     overflow: hidden; 
     display: flex; 
@@ -268,7 +288,6 @@ footer .social-icons-footer a:hover { color: #555; }
     min-height: 60vh;
 }
 .project-carousel-frame {
-    /* Mantiene width 100% RELATIVO a su contenedor padre en proyectos, no afecta al home */
     position: relative; width: 100%; max-width: 850px;
     height: auto !important; aspect-ratio: 7 / 5; 
     margin: 0 auto; overflow: hidden; background-color: #f0f0f0;
@@ -403,8 +422,9 @@ main { margin-top: 100px; min-height: 90vh; }
 
 @media screen and (max-width: 768px) {
     header { padding: 20px; height: auto; }
+    /* Para móvil en transparent-mode, mantenemos el mismo estilo sutil */
     body.transparent-mode header { 
-        background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%) !important; 
+        background: linear-gradient(to bottom, rgba(58, 58, 58, 0) 60%, rgba(58, 58, 58, 0.2) 100%) !important;
     }
     body.transparent-mode main { margin-top: 0; }
     .desktop-nav, .desktop-social { display: none; }
@@ -412,7 +432,6 @@ main { margin-top: 100px; min-height: 90vh; }
     .logo-container { margin-left: 0; margin-bottom: 0; } 
 
     .carousel-container:not(.project-carousel-frame) {
-        /* Mantiene el estilo móvil sin márgenes extra laterales, solo el margen de 20px de la caja */
         height: 75vh; width: auto; margin: 20px; border-radius: 8px; 
     }
 
