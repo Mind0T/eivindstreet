@@ -177,11 +177,21 @@ body.transparent-mode .projects-menu { padding-top: 100px; }
 
 /* CARRUSEL GENERAL (HOME) */
 .carousel-container {
-    position: relative; width: 100%; 
-    height: 100vh; 
-    overflow: hidden; display: flex; align-items: center; justify-content: center;
+    position: relative; 
+    /* CAMBIO: Ancho al 95% para dejar margen a los lados en PC */
+    width: 95%; 
+    max-width: 1800px; /* Limite para pantallas gigantes */
+    /* CAMBIO: Margen automático para centrar el bloque */
+    margin: 0 auto; 
+    /* CAMBIO: Altura ajustada a 85vh para que se vea más estético con bordes */
+    height: 85vh; 
+    overflow: hidden; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
     background-color: #000; 
 }
+
 .carousel-slide { width: 100%; height: 100%; object-fit: cover; display: none; }
 .carousel-slide.active { display: block !important; }
 
@@ -210,7 +220,6 @@ footer .social-icons-footer a:hover { color: #555; }
     justify-content: center; align-items: center;
     background-size: cover; background-position: center;
     background-image: url('../img/proyectos/general/fondoProy.jpg');
-    /* TRANSICIÓN ELIMINADA PARA EVITAR EFECTOS NO DESEADOS Y MEJORAR RESPUESTA */
     text-align: center;
 }
 .project-link {
@@ -259,12 +268,12 @@ footer .social-icons-footer a:hover { color: #555; }
     min-height: 60vh;
 }
 .project-carousel-frame {
+    /* Mantiene width 100% RELATIVO a su contenedor padre en proyectos, no afecta al home */
     position: relative; width: 100%; max-width: 850px;
     height: auto !important; aspect-ratio: 7 / 5; 
     margin: 0 auto; overflow: hidden; background-color: #f0f0f0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
-/* Añadimos cursor pointer para indicar que se puede hacer clic */
 .project-carousel-frame .carousel-slide { 
     width: 100%; 
     height: 100%; 
@@ -403,6 +412,7 @@ main { margin-top: 100px; min-height: 90vh; }
     .logo-container { margin-left: 0; margin-bottom: 0; } 
 
     .carousel-container:not(.project-carousel-frame) {
+        /* Mantiene el estilo móvil sin márgenes extra laterales, solo el margen de 20px de la caja */
         height: 75vh; width: auto; margin: 20px; border-radius: 8px; 
     }
 
