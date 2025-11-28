@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eivind Derivas | Fotógrafo de Calle y Documental en CDMX</title>
-    <meta name="description" content="Portafolio de Eivind Derivas, fotógrafo documental y de calle en Ciudad de México. Egresado de la Escuela Activa de Fotografía. Explorando la identidad urbana de Iztapalapa y la CDMX.">
-    <meta name="keywords" content="Fotógrafo CDMX, Fotografía de Calle, Fotoperiodismo, Iztapalapa, Escuela Activa de Fotografía, Pohualizcalli, Eivind Derivas">
+    <title>Eivind Street | Portafolio de Eivind Leso | Fotografía CDMX</title>
+    <meta name="description" content="Bienvenido a Eivind Street, el portafolio oficial del fotógrafo Eivind Leso. Fotografía de calle, documental y narrativa visual en Iztapalapa y Ciudad de México.">
+    <meta name="keywords" content="Eivind Leso, Eivind Street, Fotógrafo Eivind Leso, Fotografía de Calle CDMX, Iztapalapa, Escuela Activa de Fotografía, EivindStreet.com">
     
-    <meta property="og:title" content="Eivind Derivas | Fotografía Documental CDMX">
-    <meta property="og:description" content="Explorando la identidad urbana y la memoria de la Ciudad de México a través del lente.">
+    <meta property="og:title" content="Eivind Street | Fotografía por Eivind Leso">
+    <meta property="og:description" content="Explorando la identidad urbana de la CDMX a través de la lente de Eivind Leso.">
     <meta property="og:type" content="website">
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
 
     <header>
         <div class="logo-container">
-            <a href="index.html"><img src="assets/img/general/logo.png" alt="Logo Eivinderivas Fotógrafo CDMX"></a>
+            <a href="index.html"><img src="assets/img/general/logo.png" alt="Logo Eivind Street - Eivind Leso Fotógrafo"></a>
         </div>
         
         <div class="menu-toggle" id="mobile-menu-btn">
@@ -80,18 +80,15 @@
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.getElementById('home-carousel');
             const prevBtn = container.querySelector('.prev');
-            
-            // Detectar si es móvil (ancho menor o igual a 768px)
             const isMobile = window.innerWidth <= 768;
             const imgPrefix = isMobile ? 'carrumob' : 'carru';
             
-            // Generar 8 imágenes
             for (let i = 1; i <= 8; i++) {
                 const img = document.createElement('img');
                 img.className = 'carousel-slide';
                 img.src = `assets/img/carruselHOME/${imgPrefix}${i}.jpg`;
-                // MEJORA SEO: Alt dinámico pero descriptivo
-                img.alt = `Fotografía de calle CDMX Portafolio ${i} - Eivind Derivas`;
+                // SEO CLAVE: Alt Text con tu nombre
+                img.alt = `Fotografía de calle CDMX por Eivind Leso - Portafolio ${i}`;
                 
                 if (i === 1) {
                     img.classList.add('active');
@@ -101,7 +98,6 @@
             }
         });
     </script>
-
     <script src="assets/js/script.js"></script>
 </body>
 </html>
