@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let slides = document.getElementsByClassName("carousel-slide");
 
     // =========================================================
-    //   1. LÓGICA DEL CARRUSEL HOME (MANUAL / ESTÁTICO)
+    //   1. LÓGICA DEL CARRUSEL HOME
     // =========================================================
     function initHomeCarousel() {
         const container = document.getElementById('home-carousel');
@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const prevBtn = container.querySelector('.prev'); 
         const isMobile = window.innerWidth <= 768;
-        
         const imgPrefix = isMobile ? 'carrumob' : 'carru';
         const totalImages = 8; 
 
@@ -87,43 +86,57 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // =========================================================
-    //   3. LÓGICA LIGHTBOX (SWIPE + BOTÓN ATRÁS)
+    //   3. LÓGICA LIGHTBOX (HÍBRIDO: DESKTOP vs MÓVIL NATIVO)
     // =========================================================
     let lightboxIndex = 1;
     
     window.openLightbox = function(n) {
         const lightbox = document.getElementById('myLightbox');
-        if(lightbox) {
-            lightbox.style.display = "flex"; 
+        if(!lightbox) return;
+
+        lightbox.style.display = "flex"; 
+        
+        // --- DETECCIÓN MÓVIL vs DESKTOP ---
+        if (window.innerWidth <= 768) {
+            // MÓVIL: Construir galería horizontal (Snap Scroll)
+            buildMobileGallery(n);
+        } else {
+            // DESKTOP: Lógica clásica de flechas
             lightbox.style.justifyContent = "center"; 
             lightbox.style.alignItems = "center";
             currentLightboxSlide(n);
-
-            // AGREGAR ESTADO AL HISTORIAL (Para que el botón Atrás cierre el modal)
-            history.pushState({lightboxOpen: true}, "", "#lightbox");
         }
+
+        // Agregar estado al historial para que el botón "Atrás" funcione
+        history.pushState({lightboxOpen: true}, "", "#lightbox");
     };
 
     window.closeLightbox = function() {
-        // Si estamos cerrando con el botón X, simulamos un "Atrás" para limpiar el historial
-        // El evento popstate se encargará de ocultar el div
         if (history.state && history.state.lightboxOpen) {
-            history.back(); 
+            history.back(); // Esto disparará el evento popstate y cerrará el modal
         } else {
-            // Fallback por si no hay estado
             const lightbox = document.getElementById('myLightbox');
             if(lightbox) lightbox.style.display = "none";
+            
+            // Limpiar galería móvil
+            const snapWrapper = document.getElementById('mobileSnapWrapper');
+            if(snapWrapper) snapWrapper.innerHTML = ''; 
         }
     };
 
-    // ESCUCHAR EL BOTÓN ATRÁS DEL NAVEGADOR/CELULAR
+    // ESCUCHAR BOTÓN ATRÁS (NAVEGADOR/MÓVIL)
     window.addEventListener('popstate', function(event) {
         const lightbox = document.getElementById('myLightbox');
         if(lightbox && lightbox.style.display === "flex") {
             lightbox.style.display = "none";
+            
+            // Limpiar galería móvil
+            const snapWrapper = document.getElementById('mobileSnapWrapper');
+            if(snapWrapper) snapWrapper.innerHTML = '';
         }
     });
 
+    // --- LÓGICA DESKTOP (FLECHAS) ---
     window.plusLightboxSlides = function(n) { showLightboxSlides(lightboxIndex += n); };
     window.currentLightboxSlide = function(n) { showLightboxSlides(lightboxIndex = n); };
 
@@ -142,32 +155,48 @@ document.addEventListener("DOMContentLoaded", function() {
         lightboxImg.src = originalImages[lightboxIndex-1].src;
     }
 
-    // --- LÓGICA DE SWIPE (DESLIZAR) EN MÓVIL ---
-    const lightboxElement = document.getElementById('myLightbox');
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    if (lightboxElement) {
-        lightboxElement.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        }, {passive: true});
-
-        lightboxElement.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, {passive: true});
-    }
-
-    function handleSwipe() {
-        const swipeThreshold = 50; // Mínimo de píxeles para considerar un swipe
-        if (touchEndX < touchStartX - swipeThreshold) {
-            // Deslizamiento a la IZQUIERDA -> Siguiente foto
-            window.plusLightboxSlides(1);
+    // --- LÓGICA MÓVIL (CONSTRUCCIÓN DINÁMICA DE SCROLL) ---
+    function buildMobileGallery(startIndex) {
+        const lightbox = document.getElementById('myLightbox');
+        
+        // Buscar o crear el contenedor Wrapper
+        let snapWrapper = document.getElementById('mobileSnapWrapper');
+        if (!snapWrapper) {
+            snapWrapper = document.createElement('div');
+            snapWrapper.id = 'mobileSnapWrapper';
+            snapWrapper.className = 'mobile-snap-wrapper';
+            lightbox.appendChild(snapWrapper);
         }
-        if (touchEndX > touchStartX + swipeThreshold) {
-            // Deslizamiento a la DERECHA -> Foto anterior
-            window.plusLightboxSlides(-1);
-        }
+        
+        // Limpiar contenido previo
+        snapWrapper.innerHTML = '';
+
+        // Obtener todas las imágenes originales
+        let galleryImages = document.querySelectorAll('.scroll-gallery-container .gallery-item');
+        let carrouselImages = document.querySelectorAll('#home-carousel .carousel-slide');
+        let originalImages = galleryImages.length > 0 ? galleryImages : carrouselImages;
+
+        // Clonar e insertar todas las imágenes en el wrapper horizontal
+        originalImages.forEach((img) => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'mobile-snap-item';
+            
+            const newImg = document.createElement('img');
+            newImg.src = img.src;
+            newImg.alt = img.alt;
+            
+            itemDiv.appendChild(newImg);
+            snapWrapper.appendChild(itemDiv);
+        });
+
+        // Hacer scroll automático a la imagen seleccionada
+        setTimeout(() => {
+            const width = window.innerWidth;
+            snapWrapper.scrollTo({
+                left: (startIndex - 1) * width,
+                behavior: 'auto' // Instantáneo para abrir
+            });
+        }, 10);
     }
 
 
@@ -208,7 +237,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     this.classList.add('align-center');
                 }
             };
-
             container.appendChild(domImg);
             observer.observe(domImg);
         }
