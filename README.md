@@ -103,12 +103,5 @@
 
  **Eivind Leso**
  - Fotógrafo Documental & Estudiante de Ingeniería en IA.
- - [Instagram](https://www.instagram.com/eivind_derivas/)
- - [Web Oficial](https://eivindleso.com)
-
- ---
-
- ## 📄 Licencia
-
- Este proyecto está bajo la Licencia MIT - mira el archivo [LICENSE.md](LICENSE.md) para detalles.
- Las imágenes mostradas en este repositorio son propiedad intelectual de Eivind Leso y no pueden ser utilizadas sin permiso explícito.
+ - [Instagram](https://www.instagram.com/eivind_street/)
+ - [Web Oficial](https://eivindstreet.com)
