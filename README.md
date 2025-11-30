@@ -105,3 +105,10 @@
  - Fotógrafo Documental & Estudiante de Ingeniería en IA.
  - [Instagram](https://www.instagram.com/eivind_street/)
  - [Web Oficial](https://eivindstreet.com)
+
+
+
+ ## 📄 Licencia
+
+ Todos los derechos reservados sobre las imágenes mostradas en este portafolio.
+ El código fuente puede ser utilizado con fines educativos.
