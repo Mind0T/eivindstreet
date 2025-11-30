@@ -22,6 +22,9 @@ document.addEventListener("DOMContentLoaded", function() {
             domImg.className = 'carousel-slide'; 
             domImg.src = `assets/img/carruselHOME/${imgPrefix}${i}.jpg`;
             domImg.alt = `Portada Eivind Street ${i}`;
+            // Optimización: Lazy load excepto la primera
+            if (i > 1) domImg.loading = "lazy";
+            
             container.insertBefore(domImg, prevBtn);
         }
 
@@ -96,47 +99,52 @@ document.addEventListener("DOMContentLoaded", function() {
 
         lightbox.style.display = "flex"; 
         
+        // OCULTAR EL BOTÓN BACK TO TOP AL ABRIR
+        const backToTop = document.getElementById("backToTop");
+        if(backToTop) backToTop.style.display = "none";
+
         // --- DETECCIÓN MÓVIL vs DESKTOP ---
         if (window.innerWidth <= 768) {
-            // MÓVIL: Construir galería horizontal (Snap Scroll)
             buildMobileGallery(n);
         } else {
-            // DESKTOP: Lógica clásica de flechas
             lightbox.style.justifyContent = "center"; 
             lightbox.style.alignItems = "center";
             currentLightboxSlide(n);
         }
 
-        // Agregar estado al historial para que el botón "Atrás" funcione
         history.pushState({lightboxOpen: true}, "", "#lightbox");
     };
 
     window.closeLightbox = function() {
         if (history.state && history.state.lightboxOpen) {
-            history.back(); // Esto disparará el evento popstate y cerrará el modal
+            history.back(); 
         } else {
             const lightbox = document.getElementById('myLightbox');
             if(lightbox) lightbox.style.display = "none";
             
-            // Limpiar galería móvil
             const snapWrapper = document.getElementById('mobileSnapWrapper');
             if(snapWrapper) snapWrapper.innerHTML = ''; 
+            
+            // MOSTRAR DE NUEVO EL BOTÓN BACK TO TOP
+            const backToTop = document.getElementById("backToTop");
+            if(backToTop && window.scrollY > 400) backToTop.style.display = "flex";
         }
     };
 
-    // ESCUCHAR BOTÓN ATRÁS (NAVEGADOR/MÓVIL)
     window.addEventListener('popstate', function(event) {
         const lightbox = document.getElementById('myLightbox');
         if(lightbox && lightbox.style.display === "flex") {
             lightbox.style.display = "none";
-            
-            // Limpiar galería móvil
             const snapWrapper = document.getElementById('mobileSnapWrapper');
             if(snapWrapper) snapWrapper.innerHTML = '';
+
+            // MOSTRAR DE NUEVO EL BOTÓN BACK TO TOP
+            const backToTop = document.getElementById("backToTop");
+            if(backToTop && window.scrollY > 400) backToTop.style.display = "flex";
         }
     });
 
-    // --- LÓGICA DESKTOP (FLECHAS) ---
+    // --- LÓGICA DESKTOP ---
     window.plusLightboxSlides = function(n) { showLightboxSlides(lightboxIndex += n); };
     window.currentLightboxSlide = function(n) { showLightboxSlides(lightboxIndex = n); };
 
@@ -155,11 +163,9 @@ document.addEventListener("DOMContentLoaded", function() {
         lightboxImg.src = originalImages[lightboxIndex-1].src;
     }
 
-    // --- LÓGICA MÓVIL (CONSTRUCCIÓN DINÁMICA DE SCROLL) ---
+    // --- LÓGICA MÓVIL (CONSTRUCCIÓN DINÁMICA) ---
     function buildMobileGallery(startIndex) {
         const lightbox = document.getElementById('myLightbox');
-        
-        // Buscar o crear el contenedor Wrapper
         let snapWrapper = document.getElementById('mobileSnapWrapper');
         if (!snapWrapper) {
             snapWrapper = document.createElement('div');
@@ -168,33 +174,28 @@ document.addEventListener("DOMContentLoaded", function() {
             lightbox.appendChild(snapWrapper);
         }
         
-        // Limpiar contenido previo
         snapWrapper.innerHTML = '';
 
-        // Obtener todas las imágenes originales
         let galleryImages = document.querySelectorAll('.scroll-gallery-container .gallery-item');
         let carrouselImages = document.querySelectorAll('#home-carousel .carousel-slide');
         let originalImages = galleryImages.length > 0 ? galleryImages : carrouselImages;
 
-        // Clonar e insertar todas las imágenes en el wrapper horizontal
         originalImages.forEach((img) => {
             const itemDiv = document.createElement('div');
             itemDiv.className = 'mobile-snap-item';
-            
             const newImg = document.createElement('img');
             newImg.src = img.src;
             newImg.alt = img.alt;
-            
+            newImg.loading = "lazy"; // Optimización
             itemDiv.appendChild(newImg);
             snapWrapper.appendChild(itemDiv);
         });
 
-        // Hacer scroll automático a la imagen seleccionada
         setTimeout(() => {
             const width = window.innerWidth;
             snapWrapper.scrollTo({
                 left: (startIndex - 1) * width,
-                behavior: 'auto' // Instantáneo para abrir
+                behavior: 'auto' 
             });
         }, 10);
     }
@@ -222,6 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
             domImg.src = `${folderPath}/${imagePrefix}${i}.jpg`;
             domImg.alt = `Foto ${i} - Eivind Street`;
             domImg.className = 'gallery-item';
+            domImg.loading = "lazy"; // Optimización IMPORTANTE
             
             domImg.onclick = function() { openLightbox(i); };
 
@@ -248,8 +250,16 @@ document.addEventListener("DOMContentLoaded", function() {
     const backToTopBtn = document.getElementById("backToTop");
     if(backToTopBtn) {
         window.addEventListener("scroll", function() {
-            if (window.scrollY > 400) { backToTopBtn.classList.add("show"); } 
-            else { backToTopBtn.classList.remove("show"); }
+            // Verificar si el lightbox está abierto para no mostrar el botón
+            const lightbox = document.getElementById('myLightbox');
+            const isLightboxOpen = lightbox && lightbox.style.display === 'flex';
+
+            if (window.scrollY > 400 && !isLightboxOpen) { 
+                backToTopBtn.classList.add("show"); 
+                backToTopBtn.style.display = "flex"; // Asegurar que sea visible
+            } else { 
+                backToTopBtn.classList.remove("show"); 
+            }
         });
         backToTopBtn.addEventListener("click", function() {
             window.scrollTo({ top: 0, behavior: "smooth" });
