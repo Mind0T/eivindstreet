@@ -1,84 +1,114 @@
-# DERIURS - Portfolio Web
+ # Eivind Street - Portafolio Fotográfico y Documental
 
-Este repositorio contiene el código fuente del sitio web personal de **DERIURS**, un portafolio diseñado para exhibir fotografía documental, videografía aérea y la intersección con la Ingeniería en IA.
+ Este repositorio aloja el sitio web oficial de **Eivind Leso** (Eivind Street). 
+ Es un portafolio profesional diseñado para exhibir fotografía documental, 
+ proyectos urbanos en la CDMX (Iztapalapa, Jamaica, Metro) y servicios de videografía.
 
-El diseño sigue una estética minimalista y oscura ("Dark Mode"), priorizando la visualización de imágenes de alta calidad y una navegación tipográfica limpia y moderna utilizando la familia de fuentes *Montserrat*.
+ El sitio ha sido construido desde cero (Vanilla JS), priorizando el rendimiento, 
+ la semántica SEO y una experiencia de usuario inmersiva tanto en escritorio como en móvil.
 
-## 📋 Características Principales
+ ---
 
-* **Diseño Responsivo:** Adaptable a dispositivos móviles y escritorio.
-* **Navegación Dinámica:**
-    * Header fijo con gradiente y distribución equilibrada (Logo a la izquierda, Menú al centro, Redes a la derecha).
-    * Tipografía "Light" para una densidad visual elegante.
-    * Efectos de *hover* en enlaces e iconos.
-* **Carrusel de Imágenes (Slider):**
-    * Implementado en JavaScript puro (Vanilla JS).
-    * Funcionalidad automática y manual (flechas de navegación).
-* **Menú de Proyectos Interactivo:**
-    * Cambio de fondo de pantalla completa al pasar el cursor sobre los nombres de los proyectos (`onmouseover`).
-* **Galería de Videos:**
-    * Integración (Embed) de videos de YouTube manteniendo la relación de aspecto 16:9.
-* **Tipografía y Iconos:**
-    * Uso de *Google Fonts* (Montserrat) con jerarquía de grosores (Light vs. Extra Bold).
-    * Iconos vectoriales mediante *FontAwesome* (sin uso de imágenes PNG para iconos).
+ ## 🚀 Tecnologías Utilizadas
 
-## 🛠️ Tecnologías Utilizadas
+ El proyecto no utiliza frameworks pesados (como React o Bootstrap) para mantener 
+ el código ligero y tener control total sobre las animaciones y el diseño.
 
-* **HTML5:** Estructura semántica.
-* **CSS3:** Variables CSS (`:root`), Flexbox, CSS Grid y transiciones.
-* **JavaScript (ES6):** Lógica del carrusel y manipulación del DOM para fondos dinámicos.
-* **Librerías Externas:**
-    * [FontAwesome 6.4](https://fontawesome.com/) (Iconos)
-    * [Google Fonts](https://fonts.google.com/) (Montserrat)
+ - **HTML5 Semántico:** Estructura optimizada para SEO (`meta tags`, `OG tags`).
+ - **CSS3 Moderno:** #   - Uso de Variables CSS (`:root`).
+   - Diseño Responsive (Mobile-First) con Media Queries.
+   - Flexbox y CSS Grid para layouts complejos.
+   - Animaciones y transiciones suaves.
+ - **JavaScript (ES6+):**
+   - Lógica modular para carruseles y menús.
+   - **Intersection Observer API** para efectos de "Lazy Load" y animaciones al hacer scroll.
+   - Manejo de eventos táctiles (`touchstart`, `touchmove`) para gestos en móviles.
 
-## 📂 Estructura del Proyecto
+ ---
 
-El proyecto sigue una estructura ordenada para facilitar el mantenimiento:
+ ## ✨ Características Principales
 
-```text
-/
-├── index.html                # Página de Inicio (Carrusel principal)
-├── about.html                # Sección "Acerca de mí"
-├── proyectosPersonales.html  # Menú interactivo de proyectos
-├── videos.html               # Galería de videografía
-├── cursos.html               # Sección de cursos ofertados
-├── iztapalapa.html           # Proyecto individual
-├── jamaica.html              # Proyecto individual
-├── metroCdmx.html            # Proyecto individual
-├── README.md                 # Documentación
-└── assets/
-    ├── css/
-    │   └── style.css         # Estilos globales
-    ├── js/
-    │   └── script.js         # Lógica del carrusel y fondos
-    └── img/
-        ├── general/          # Logos, iconos antiguos, recursos base
-        ├── acerca/           # Fotos para sección about
-        ├── carruselHOME/     # Imágenes del slider inicial
-        └── proyectos/        # Carpetas por proyecto (iztapalapa, metro, etc.)
+ ### 1. Navegación y UI
+ - **Header Dinámico:** Cambia de transparente a sólido dependiendo de la página y el scroll.
+ - **Menú Móvil:** Animado y accesible.
+ - **Modo Oscuro/Claro:** Secciones de alto contraste (negro para impacto visual, blanco para galerías).
 
-🚀 Instalación y Uso
-Este es un sitio web estático, por lo que no requiere instalación de dependencias complejas ni servidores backend.
+ ### 2. Galerías de Imágenes Avanzadas
+ - **Scroll Gallery:** Las imágenes aparecen con un efecto de desvanecimiento (`fade-in`) conforme el usuario baja, usando `IntersectionObserver`.
+ - **Carga Diferida (Lazy Loading):** Implementado para mejorar la velocidad de carga en conexiones móviles.
 
-Clonar el repositorio:
+ ### 3. Lightbox Personalizado (Visor de Fotos)
+ Se desarrolló un Lightbox a medida que adapta su comportamiento según el dispositivo:
+ - **Escritorio:** Navegación con flechas y teclado, centrado en pantalla.
+ - **Móvil:** #   - Soporte para **Gestos Táctiles (Pinch-to-Zoom)** con física personalizada.
+   - Desplazamiento lateral (Swipe) nativo con `scroll-snap`.
+   - Pantalla completa inmersiva.
 
-git clone [https://github.com/tu-usuario/deriurs-portfolio.git](https://github.com/tu-usuario/deriurs-portfolio.git)
+ ---
 
-2. Ejecutar: Simplemente abre el archivo index.html en tu navegador web preferido (Chrome, Firefox, Edge).
+ ## 📂 Estructura del Proyecto
 
-Recomendación: Para desarrollo, utiliza la extensión "Live Server" de VS Code.
+ ```bash
+ .
+ ├── index.html                # Página de inicio (Carrusel principal)
+ ├── about.html                # Biografía y perfil profesional
+ ├── proyectosPersonales.html  # Menú de selección de galerías
+ ├── videos.html               # Portafolio de videografía y drone
+ ├── cursos.html               # Oferta académica (IA y Fotografía)
+ ├── contacto.html             # Formulario de contacto
+ │
+ ├── assets/
+ │   ├── css/
+ │   │   └── style.css         # Hoja de estilos principal
+ │   ├── js/
+ │   │   └── script.js         # Lógica completa del sitio
+ │   └── img/                  # Recursos gráficos organizados por carpetas
+ │       ├── general/          # Logos y fondos
+ │       ├── proyectos/        # Carpetas por proyecto (iztapalapa, jamaica, etc.)
+ │       └── carruselHOME/     # Imágenes del slider principal
+ │
+ └── README.md                 # Documentación del proyecto
+ ```
 
-⚙️ Personalización
-Agregar un nuevo proyecto
-Duplica un archivo de proyecto existente (ej. iztapalapa.html) y renómbralo.
+ ---
 
-Actualiza el título y la descripción en el HTML.
+ ## 🔧 Instalación y Despliegue
 
-Cambia las rutas de las imágenes del carrusel.
+ ### Localmente
+ Dado que es un sitio estático, no requiere instalación de dependencias npm.
+ 1. Clona el repositorio:
+    ```bash
+    git clone [https://github.com/tu-usuario/eivind-street-portfolio.git](https://github.com/tu-usuario/eivind-street-portfolio.git)
+    ```
+ 2. Abre el archivo `index.html` en tu navegador o usa una extensión como **Live Server** en VS Code.
 
-Agrega el enlace en proyectosPersonales.html:
-<a href="nuevo-proyecto.html" class="project-link" 
-   onmouseover="changeBackground('nuevaImagenFondo.jpg')" 
-   onmouseout="resetBackground()">
-   Nombre del Proyecto
-</a>
+ ### Despliegue (Deploy)
+ El sitio está listo para desplegarse en cualquier host de archivos estáticos:
+ - **Vercel / Netlify:** Simplemente conecta el repositorio y el deploy es automático.
+ - **GitHub Pages:** Habilita la opción en la configuración del repositorio apuntando a la rama `main` (o `master`).
+
+ ---
+
+ ## 📸 Proyectos Destacados
+
+ El sitio incluye galerías documentales específicas:
+ - **Iztapalapa:** Documentación visual de 34 años de historia en la alcaldía.
+ - **Mercado de Jamaica:** El ciclo de la vida y la muerte a través de las flores.
+ - **Transporte CDMX:** Ensayo sobre la soledad colectiva en el metro.
+ - **Centro Médico Siglo XXI:** Arquitectura brutalista y muralismo.
+
+ ---
+
+ ## ✒️ Autor
+
+ **Eivind Leso**
+ - Fotógrafo Documental & Estudiante de Ingeniería en IA.
+ - [Instagram](https://www.instagram.com/eivind_derivas/)
+ - [Web Oficial](https://eivindleso.com)
+
+ ---
+
+ ## 📄 Licencia
+
+ Este proyecto está bajo la Licencia MIT - mira el archivo [LICENSE.md](LICENSE.md) para detalles.
+ Las imágenes mostradas en este repositorio son propiedad intelectual de Eivind Leso y no pueden ser utilizadas sin permiso explícito.
