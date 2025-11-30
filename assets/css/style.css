@@ -21,7 +21,7 @@ body {
     font-family: var(--font-main);
     font-weight: 300;
     overflow-x: hidden;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; /* Scroll suave nativo */
 }
 
 /* Títulos y Encabezados Globales */
@@ -36,7 +36,9 @@ p {
     line-height: 1.8;
 }
 
-/* HEADER GENERAL */
+/* ==========================================================================
+   HEADER GENERAL
+   ========================================================================== */
 header {
     background: linear-gradient(to bottom, #141414, #000000);
     padding: 30px 40px;
@@ -161,16 +163,21 @@ header {
 
 .mobile-social a { font-size: 1.8rem; }
 
-/* HEADER TRANSPARENT MODE */
+/* ==========================================================================
+   HEADER TRANSPARENT MODE
+   ========================================================================== */
 body.transparent-mode header {
     background: linear-gradient(to bottom, rgba(58, 58, 58, 0) 60%, rgba(58, 58, 58, 0.2) 100%) !important;
     padding-top: 30px;
     padding-bottom: 30px; 
 }
+
 body.transparent-mode main { margin-top: 0 !important; }
+
 body.transparent-mode .project-hero,
 body.transparent-mode .about-banner,
 body.transparent-mode .projects-menu { padding-top: 100px; }
+
 
 /* CARRUSEL HOME */
 .carousel-container {
@@ -204,13 +211,14 @@ footer {
 }
 footer .social-icons-footer a { color: black; font-size: 1.5rem; margin: 0 15px; }
 
-/* PROYECTOS MENU */
+/* PROYECTOS MENU (Estilos Generales/Desktop) */
 .projects-menu {
     height: 100vh; display: flex; flex-direction: column;
     justify-content: center; align-items: center;
     background-size: cover; background-position: center;
     background-image: url('../img/proyectos/general/fondoProy.jpg');
     text-align: center;
+    /* Transición suave para el cambio de fondo */
     transition: background-image 0.5s ease-in-out;
 }
 .project-link {
@@ -268,7 +276,7 @@ footer .social-icons-footer a { color: black; font-size: 1.5rem; margin: 0 15px;
 
 /* LIGHTBOX (Base Desktop) */
 .lightbox {
-    display: none; position: fixed; z-index: 5000; 
+    display: none; position: fixed; z-index: 2000; 
     padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%;
     overflow: auto; background-color: rgba(0, 0, 0, 0.95);
 }
@@ -278,12 +286,12 @@ footer .social-icons-footer a { color: black; font-size: 1.5rem; margin: 0 15px;
 }
 .close-lightbox {
     position: absolute; top: 20px; right: 35px; color: #f1f1f1;
-    font-size: 40px; font-weight: bold; cursor: pointer; z-index: 5001;
+    font-size: 40px; font-weight: bold; cursor: pointer; z-index: 2001;
 }
 .lightbox-prev, .lightbox-next {
     cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px;
     margin-top: -50px; color: white; font-weight: bold; font-size: 40px;
-    user-select: none; z-index: 5001;
+    user-select: none;
 }
 .lightbox-next { right: 20px; } .lightbox-prev { left: 20px; }
 
@@ -305,46 +313,133 @@ footer .social-icons-footer a { color: black; font-size: 1.5rem; margin: 0 15px;
 }
 main { margin-top: 100px; min-height: 90vh; }
 
-/* RESPONSIVE HEADERS - AHORA TODO SE UNE EN 1024px */
+/* RESPONSIVE HEADERS */
 @media screen and (max-width: 1024px) {
-    /* Ajustes generales que antes estaban en 768px y 1024px unificados */
+    header { padding: 15px 20px; }
+    nav ul { gap: 20px; max-width: 100%; } 
+    .logo-container img { height: 50px; }
+}
+@media screen and (max-width: 768px) {
     header { padding: 20px; height: auto; }
-    
     body.transparent-mode header { 
         background: linear-gradient(to bottom, rgba(58, 58, 58, 0) 60%, rgba(58, 58, 58, 0.2) 100%) !important;
     }
     body.transparent-mode main { margin-top: 0; }
-    
-    .desktop-nav, .desktop-social { display: none; } /* Ocultar menú desktop */
-    .menu-toggle { display: flex; } /* Mostrar hamburguesa */
-    .logo-container img { height: 50px; }
-    
+    .desktop-nav, .desktop-social { display: none; }
+    .menu-toggle { display: flex; }
     .carousel-container:not(.project-carousel-frame) { height: 75vh; width: auto; margin: 20px; }
     .project-hero, .about-banner { height: auto !important; min-height: 60vh; padding-bottom: 60px; align-items: flex-end; }
     .hero-text, .about-text { margin-top: 100px; width: 100%; max-width: 100%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); }
     .project-link { font-size: 2rem; margin: 25px 0; }
+}
+
+/* =========================================================
+   GALERÍA SCROLL (EDITORIAL / VERTICAL)
+   ========================================================= */
+.scroll-gallery-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 20px 0;
+    gap: 60px; 
+}
+
+.gallery-item {
+    display: block;
+    max-width: 80%; 
+    height: auto;
+    cursor: zoom-in;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     
-    /* Galería Scroll */
+    opacity: 0;
+    transform: translateY(100px) scale(0.98); 
+    transition: opacity 1s ease-out, transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
+}
+
+.gallery-item.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.align-center { margin-left: auto; margin-right: auto; }
+.align-left { margin-right: auto; margin-left: 10%; }
+.align-right { margin-left: auto; margin-right: 10%; }
+
+.gallery-item.is-portrait { max-width: 45%; }
+.gallery-item.is-landscape { max-width: 85%; }
+
+@media screen and (max-width: 768px) {
     .scroll-gallery-container { gap: 40px; }
     .align-left, .align-right, .align-center { margin-left: auto; margin-right: auto; }
     .gallery-item.is-landscape { max-width: 95%; }
     .gallery-item.is-portrait { max-width: 70%; }
+}
 
-    /* Auto Play Menú Móvil */
-    .projects-menu { height: 100vh !important; justify-content: center; padding-top: 0; padding-bottom: 0; }
+/* =========================================================
+   BOTÓN VOLVER ARRIBA (Back to Top)
+   ========================================================= */
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.4); 
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, background-color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+#backToTop.show { opacity: 1; visibility: visible; }
+#backToTop:hover { background-color: rgba(0, 0, 0, 0.8); transform: translateY(-3px); }
+
+/* =========================================================
+   AJUSTES MÓVILES: AUTO-PLAY MENU
+   ========================================================= */
+@media screen and (max-width: 768px) {
+    .projects-menu {
+        height: 100vh !important;
+        justify-content: center; 
+        padding-top: 0; 
+        padding-bottom: 0;
+    }
     .project-link {
-        font-size: 1.5rem; margin: 25px 0; opacity: 0.4; 
+        font-size: 1.5rem; 
+        margin: 25px 0; 
+        opacity: 0.4; 
         transition: opacity 0.5s ease, transform 0.5s ease; 
-        position: relative; display: inline-block; pointer-events: auto; 
+        position: relative; 
+        display: inline-block;
+        pointer-events: auto; 
     }
     .project-link.active-project {
-        opacity: 1 !important; transform: scale(1.15);
+        opacity: 1 !important;
+        transform: scale(1.15);
         text-shadow: 0 0 15px rgba(255,255,255,0.6);
     }
     .project-link.active-project::before {
-        content: ''; position: absolute; left: -20px; top: 50%;
-        transform: translateY(-50%); width: 10px; height: 10px;
-        background-color: #fff; border-radius: 50%;
+        content: '';
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 10px;
+        background-color: #fff; 
+        border-radius: 50%;
         box-shadow: 0 0 12px rgba(255, 255, 255, 1); 
         animation: pulseDot 2s infinite;
     }
@@ -356,55 +451,47 @@ main { margin-top: 100px; min-height: 90vh; }
     100% { transform: translateY(-50%) scale(1); opacity: 1; }
 }
 
-/* BOTÓN VOLVER ARRIBA */
-#backToTop {
-    position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
-    background-color: rgba(0, 0, 0, 0.4); color: white; border: none;
-    border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 3000;
-    opacity: 0; visibility: hidden;
-    transition: opacity 0.4s ease, background-color 0.3s ease, transform 0.3s ease;
-    display: flex; align-items: center; justify-content: center;
-    backdrop-filter: blur(5px);
-}
-#backToTop.show { opacity: 1; visibility: visible; }
-#backToTop:hover { background-color: rgba(0, 0, 0, 0.8); transform: translateY(-3px); }
-
 /* =========================================================
    ESTILOS LIGHTBOX MÓVIL (GALERÍA NATIVA / SNAP)
    ========================================================= */
-/* Aplica para 1024px o menos (Tablets y Celulares) */
 .mobile-snap-wrapper {
-    display: none; 
+    display: none; /* Oculto en desktop */
 }
 
-@media screen and (max-width: 1024px) {
-    .lightbox-prev, .lightbox-next, .close-lightbox, #lightbox-img { 
+@media screen and (max-width: 768px) {
+    /* 1. Ocultar interfaz de escritorio en móvil */
+    .lightbox-prev, 
+    .lightbox-next, 
+    .close-lightbox,
+    #lightbox-img { 
         display: none !important; 
     }
-    
+
+    /* 2. Ajustar el contenedor Lightbox para pantalla completa */
     .lightbox {
         padding: 0 !important;
-        background-color: #000 !important; 
-        align-items: flex-start !important; 
+        background-color: #000 !important; /* Fondo totalmente negro */
+        align-items: flex-start !important; /* Alinear arriba para el scroll */
     }
 
+    /* 3. Contenedor de la tira de imágenes */
     .mobile-snap-wrapper {
         display: flex;
         width: 100%;
         height: 100%;
-        overflow-x: scroll; 
+        overflow-x: scroll; /* Permite scroll horizontal */
         overflow-y: hidden;
-        scroll-snap-type: x mandatory; 
-        scroll-snap-stop: always; 
-        -webkit-overflow-scrolling: touch; 
-        scroll-behavior: smooth; 
+        scroll-snap-type: x mandatory; /* Eje X, obligatorio detenerse en foto */
+        -webkit-overflow-scrolling: touch; /* Suavidad en iOS */
+        scroll-behavior: auto; /* Auto para que el drag sea inmediato */
     }
 
+    /* 4. Cada item (foto) dentro de la tira */
     .mobile-snap-item {
-        flex: 0 0 100%; 
+        flex: 0 0 100%; /* Ancho completo */
         width: 100vw;
         height: 100vh;
-        scroll-snap-align: center; 
+        scroll-snap-align: center; /* Centrar al soltar */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -416,7 +503,7 @@ main { margin-top: 100px; min-height: 90vh; }
         max-height: 100%;
         width: auto;
         height: auto;
-        object-fit: contain; 
+        object-fit: contain; /* Ajuste perfecto sin corte */
         user-select: none;
     }
 }

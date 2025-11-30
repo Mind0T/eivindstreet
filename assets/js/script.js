@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const prevBtn = container.querySelector('.prev'); 
         
-        // Límite 1024px para cubrir Tablets y Móviles apaisados
-        const isMobile = window.innerWidth <= 1024;
+        // RESTAURADO A 768px
+        const isMobile = window.innerWidth <= 768;
         const imgPrefix = isMobile ? 'carrumob' : 'carru';
         const totalImages = 8; 
 
@@ -73,7 +73,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     window.resetBackground = function() {
         const container = document.getElementById('projects-container');
-        if(window.innerWidth > 1024 && container) {
+        // RESTAURADO A 768px
+        if(window.innerWidth > 768 && container) {
             container.style.backgroundImage = "url('assets/img/proyectos/general/fondoProy.jpg')";
         }
     };
@@ -104,8 +105,8 @@ document.addEventListener("DOMContentLoaded", function() {
         const backToTop = document.getElementById("backToTop");
         if(backToTop) backToTop.style.display = "none";
 
-        // --- MODO MÓVIL / TABLET (<= 1024px) ---
-        if (window.innerWidth <= 1024) {
+        // RESTAURADO A 768px
+        if (window.innerWidth <= 768) {
             // 1. Activar Pantalla Completa (Fullscreen API)
             toggleFullScreen(lightbox);
             
@@ -145,10 +146,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if(backToTop && window.scrollY > 400) backToTop.style.display = "flex";
     }
 
-    // Manejar botón "Atrás" del celular
     window.addEventListener('popstate', function(event) {
-        exitFullScreen(); // Asegurar salir de fullscreen al dar atrás
-        
+        exitFullScreen(); 
         const lightbox = document.getElementById('myLightbox');
         if(lightbox && lightbox.style.display === "flex") {
             closeLightboxLogic();
@@ -200,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function() {
         lightboxImg.src = originalImages[lightboxIndex-1].src;
     }
 
-    // --- LÓGICA MÓVIL OPTIMIZADA (SIN BARRIDO / SWEEP) ---
+    // --- LÓGICA MÓVIL OPTIMIZADA (SIN BARRIDO) ---
     function buildMobileGallery(startIndex) {
         const lightbox = document.getElementById('myLightbox');
         let snapWrapper = document.getElementById('mobileSnapWrapper');
@@ -230,24 +229,19 @@ document.addEventListener("DOMContentLoaded", function() {
             snapWrapper.appendChild(itemDiv);
         });
 
-        // === MAGIA PARA EVITAR EL BARRIDO (SWEEP) ===
-        // 1. Desactivamos el "imán" y el scroll suave temporalmente
+        // EVITAR EL BARRIDO (SWEEP)
         snapWrapper.style.scrollSnapType = 'none';
         snapWrapper.style.scrollBehavior = 'auto';
 
-        // 2. Calculamos la posición exacta
         const width = window.innerWidth;
         const targetPos = (startIndex - 1) * width;
-
-        // 3. Saltamos inmediatamente (Teletransportación)
         snapWrapper.scrollLeft = targetPos;
 
-        // 4. Reactivamos el "imán" después de un frame para que el usuario pueda deslizar
         requestAnimationFrame(() => {
             setTimeout(() => {
                 snapWrapper.style.scrollSnapType = 'x mandatory';
                 snapWrapper.style.scrollBehavior = 'smooth';
-            }, 50); // Pequeño delay para asegurar que el navegador ya renderizó el salto
+            }, 50); 
         });
     }
 
@@ -302,7 +296,6 @@ document.addEventListener("DOMContentLoaded", function() {
     if(backToTopBtn) {
         window.addEventListener("scroll", function() {
             const lightbox = document.getElementById('myLightbox');
-            // Verificación extra segura
             const isLightboxOpen = lightbox && (lightbox.style.display === 'flex' || lightbox.style.display === 'block');
 
             if (window.scrollY > 400 && !isLightboxOpen) { 
@@ -320,7 +313,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // =========================================================
     //   6. AUTO-PLAY MENÚ MÓVIL
     // =========================================================
-    if (window.innerWidth <= 1024 && document.getElementById('projects-container')) {
+    // RESTAURADO A 768px
+    if (window.innerWidth <= 768 && document.getElementById('projects-container')) {
         const projectLinks = document.querySelectorAll('.project-link');
         let currentProjIndex = 0;
         const totalProjects = projectLinks.length;
