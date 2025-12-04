@@ -6,6 +6,40 @@ document.addEventListener("DOMContentLoaded", function() {
     let slides = document.getElementsByClassName("carousel-slide");
 
     // =========================================================
+    //   0. UTILIDADES GLOBALES (Detención de videos)
+    // =========================================================
+
+    // Función principal para detener todos los videos de YouTube
+    function stopAllIframeVideos() {
+        const iframes = document.querySelectorAll('iframe');
+        iframes.forEach(iframe => {
+            const src = iframe.src;
+            // Solo actuar si es un iframe de YouTube y está reproduciendo (o puede estarlo)
+            if (src.includes('youtube.com/embed')) {
+                // Forzar la recarga del src detiene la reproducción.
+                // Reemplazamos src con sí mismo para forzar la detención sin perder el video.
+                iframe.src = src; 
+            }
+        });
+    }
+
+    // Inicializa la lógica para detener videos en la cuadrícula de videos.html
+    function initVideoStopping() {
+        const videoContainers = document.querySelectorAll('.video-card .video-container');
+        
+        videoContainers.forEach(container => {
+            // Asignamos el listener al contenedor, ya que el iframe puede ser difícil de capturar
+            // cuando se superpone con los controles de YouTube.
+            container.addEventListener('click', function(event) {
+                // Detenemos todos los videos...
+                stopAllIframeVideos();
+                
+                // ... y luego permitimos que el clic continúe para que el video en el que hicimos clic se inicie.
+            });
+        });
+    }
+    
+    // =========================================================
     //   1. LÓGICA DEL CARRUSEL HOME
     // =========================================================
     function initHomeCarousel() {
@@ -29,6 +63,8 @@ document.addEventListener("DOMContentLoaded", function() {
             
             container.insertBefore(domImg, prevBtn);
         }
+
+        slides = document.getElementsByClassName("carousel-slide");
 
         if (totalImages > 0) {
             showSlides(1);
@@ -62,10 +98,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Inicializar lógica HOME y Videos
     initHomeCarousel();
+    initVideoStopping();
+
 
     // =========================================================
-    //   2. UTILIDADES
+    //   2. UTILIDADES DE NAVEGACIÓN Y PROYECTOS
     // =========================================================
     window.changeBackground = function(imageName) {
         const container = document.getElementById('projects-container');
@@ -85,6 +124,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if(menuToggle && mobileMenu) {
         menuToggle.addEventListener('click', function() { mobileMenu.classList.add('active'); });
+        // Asegurarse de detener todos los videos al abrir el menú móvil
+        menuToggle.addEventListener('click', stopAllIframeVideos); 
     }
     if(closeMenu && mobileMenu) {
         closeMenu.addEventListener('click', function() { mobileMenu.classList.remove('active'); });
@@ -98,6 +139,9 @@ document.addEventListener("DOMContentLoaded", function() {
     window.openLightbox = function(n) {
         const lightbox = document.getElementById('myLightbox');
         if(!lightbox) return;
+
+        // Detener videos si se abre el lightbox (aunque no debería haber videos aquí)
+        stopAllIframeVideos(); 
 
         lightbox.style.display = "flex"; 
         
@@ -327,9 +371,12 @@ document.addEventListener("DOMContentLoaded", function() {
         const container = document.getElementById('scroll-gallery');
         if (!container) return;
 
+        // Asegurarse de detener videos si estamos en la galería de imágenes
+        stopAllIframeVideos();
+
         const observerOptions = { 
             root: null, 
-            rootMargin: '0px 0px -50px 0px', // Mantenemos el margen seguro
+            rootMargin: '0px 0px -50px 0px', 
             threshold: 0.1
         };
         
@@ -347,8 +394,6 @@ document.addEventListener("DOMContentLoaded", function() {
             domImg.src = `${folderPath}/${imagePrefix}${i}.jpg`;
             domImg.alt = `Foto ${i} - Eivind Street`;
             domImg.className = 'gallery-item';
-            
-            // SIN LAZY LOADING para la galería principal
             
             domImg.onclick = function() { openLightbox(i); };
 
@@ -369,7 +414,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
             container.appendChild(domImg);
             
-            // SE APLICA OBSERVER A TODOS (SIN LÓGICA DE TIEMPO)
             observer.observe(domImg);
         }
     };
