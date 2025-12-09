@@ -7,6 +7,7 @@
     --input-border: #333333; 
     --btn-blue: #254685; 
     --btn-blue-hover: #1d3666;
+    --btn-green-ws: #25D366;
 }
 
 * {
@@ -212,8 +213,7 @@ footer {
     gap: 15px;
 }
 .copyright-text {
-    /* Nuevo estilo para el texto de derechos, asegurando que esté debajo de los logos */
-    order: 2; /* Asegura que vaya al final */
+    order: 2; 
     margin-top: 15px; 
 }
 .footer-content p {
@@ -222,7 +222,6 @@ footer {
     font-weight: 300;
 }
 .social-icons-footer {
-    /* Los iconos van primero */
     order: 1; 
 }
 footer .social-icons-footer a { color: #aaaaaa; font-size: 1.5rem; margin: 0 15px; transition: color 0.3s; }
@@ -312,8 +311,7 @@ footer .social-icons-footer a:hover { color: #ffffff; }
 .lightbox-next { right: 20px; } .lightbox-prev { left: 20px; }
 
 /* OTROS ELEMENTOS */
-.cursos-section h1, .video-section h1 { font-weight: 900; }
-.video-section, .cursos-section { padding-bottom: 200px; }
+.video-section { padding-bottom: 200px; }
 .video-card { border: 1px solid #333; }
 .contact-section { padding: 50px 20px; max-width: 800px; margin: 0 auto; }
 .contact-form { display: flex; flex-direction: column; gap: 25px; }
@@ -344,11 +342,10 @@ main { margin-top: 100px; min-height: 90vh; }
     .desktop-nav, .desktop-social { display: none; }
     .menu-toggle { display: flex; }
     .carousel-container:not(.project-carousel-frame) { height: 75vh; width: auto; margin: 20px; }
-    /* FIX MOBILE BANNER START */
     .project-hero, .about-banner { 
         height: auto !important; 
         min-height: 60vh; 
-        padding-bottom: 0px; /* Removing the gap */
+        padding-bottom: 0px; 
         align-items: flex-end; 
     }
     .hero-text { 
@@ -356,7 +353,6 @@ main { margin-top: 100px; min-height: 90vh; }
         width: 100%; 
         max-width: 100%; 
         padding: 20px; 
-        /* Stronger gradient from black (bottom) to transparent (top) */
         background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 30%, rgba(0,0,0,0.6) 70%, transparent 100%); 
     }
     .about-text {
@@ -366,7 +362,6 @@ main { margin-top: 100px; min-height: 90vh; }
         background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
         margin-top: 0; 
     }
-    /* FIX MOBILE BANNER END */
     .project-link { font-size: 2rem; margin: 25px 0; }
 }
 
@@ -435,6 +430,153 @@ main { margin-top: 100px; min-height: 90vh; }
 }
 
 /* =========================================================
+   ESTILOS NUEVOS: PÁGINA SERVICIOS (ZigZag Layout)
+   ========================================================= */
+.services-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+.service-row {
+    display: flex;
+    align-items: center;
+    gap: 80px; /* Margen generoso entre foto y texto */
+    margin-bottom: 150px; /* Separación entre servicios */
+}
+
+/* Alternar orden: Pares tienen la imagen a la derecha (row-reverse) */
+.service-row:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.service-img {
+    flex: 1;
+}
+
+.service-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Sombra elegante */
+    border-radius: 2px;
+}
+
+.service-text {
+    flex: 1;
+    text-align: left;
+}
+
+.service-title {
+    font-weight: 100; /* Letra delgada (Thin) */
+    font-size: 3rem;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    color: #fff;
+    letter-spacing: 4px;
+}
+
+.service-subtitle {
+    font-weight: 700; /* Negrita */
+    font-size: 1.2rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: #ddd;
+    border-left: 3px solid #fff;
+    padding-left: 15px;
+}
+
+.service-list {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.service-list li {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #bbb;
+    font-weight: 300;
+}
+
+.service-price {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #fff;
+    margin: 15px 0;
+}
+
+.service-extras {
+    list-style: none;
+    margin-top: 15px;
+    font-size: 0.95rem;
+    color: #888;
+}
+
+.service-buttons {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-folleto, .btn-agenda {
+    display: inline-block;
+    padding: 12px 25px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.btn-folleto {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+}
+.btn-folleto:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.btn-agenda {
+    background-color: var(--btn-green-ws); /* Color WhatsApp */
+    border: 1px solid var(--btn-green-ws);
+    color: #fff;
+}
+.btn-agenda:hover {
+    background-color: #1ebe57;
+    border-color: #1ebe57;
+    transform: translateY(-2px);
+}
+
+.btn-small-link {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 0.8rem;
+    text-decoration: underline;
+    color: #aaa;
+    transition: color 0.3s;
+}
+.btn-small-link:hover { color: #fff; }
+
+.course-item { margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+
+/* Responsive Servicios */
+@media screen and (max-width: 900px) {
+    .service-row, .service-row:nth-child(even) {
+        flex-direction: column;
+        gap: 40px;
+        margin-bottom: 80px;
+    }
+    .service-title { font-size: 2rem; text-align: center; }
+    .service-subtitle { text-align: left; }
+    .service-buttons { justify-content: center; }
+}
+
+/* =========================================================
    ESTILOS LIGHTBOX MÓVIL (GALERÍA NATIVA / SNAP / ZOOM)
    ========================================================= */
 .mobile-snap-wrapper {
@@ -473,7 +615,7 @@ main { margin-top: 100px; min-height: 90vh; }
         align-items: center;
         justify-content: center;
         position: relative;
-        overflow: hidden; /* Importante para el zoom */
+        overflow: hidden; 
     }
 
     .mobile-snap-item img {
@@ -484,7 +626,6 @@ main { margin-top: 100px; min-height: 90vh; }
         object-fit: contain; 
         user-select: none;
         transform-origin: center center;
-        /* Transición suave para el doble tap */
         transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 }
