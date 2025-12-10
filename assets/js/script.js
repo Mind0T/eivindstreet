@@ -14,27 +14,17 @@ document.addEventListener("DOMContentLoaded", function() {
         const iframes = document.querySelectorAll('iframe');
         iframes.forEach(iframe => {
             const src = iframe.src;
-            // Solo actuar si es un iframe de YouTube y está reproduciendo (o puede estarlo)
             if (src.includes('youtube.com/embed')) {
-                // Forzar la recarga del src detiene la reproducción.
-                // Reemplazamos src con sí mismo para forzar la detención sin perder el video.
                 iframe.src = src; 
             }
         });
     }
 
-    // Inicializa la lógica para detener videos en la cuadrícula de videos.html
     function initVideoStopping() {
         const videoContainers = document.querySelectorAll('.video-card .video-container');
-        
         videoContainers.forEach(container => {
-            // Asignamos el listener al contenedor, ya que el iframe puede ser difícil de capturar
-            // cuando se superpone con los controles de YouTube.
             container.addEventListener('click', function(event) {
-                // Detenemos todos los videos...
                 stopAllIframeVideos();
-                
-                // ... y luego permitimos que el clic continúe para que el video en el que hicimos clic se inicie.
             });
         });
     }
@@ -47,8 +37,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!container) return;
 
         const prevBtn = container.querySelector('.prev'); 
-        
-        // 768px para proteger visualización Desktop
         const isMobile = window.innerWidth <= 768;
         const imgPrefix = isMobile ? 'carrumob' : 'carru';
         const totalImages = 8; 
@@ -58,9 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
             domImg.className = 'carousel-slide'; 
             domImg.src = `assets/img/carruselHOME/${imgPrefix}${i}.jpg`;
             domImg.alt = `Portada Eivind Street ${i}`;
-            // Lazy loading en Home está bien
             if (i > 1) domImg.loading = "lazy";
-            
             container.insertBefore(domImg, prevBtn);
         }
 
@@ -98,7 +84,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Inicializar lógica HOME y Videos
     initHomeCarousel();
     initVideoStopping();
 
@@ -124,7 +109,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if(menuToggle && mobileMenu) {
         menuToggle.addEventListener('click', function() { mobileMenu.classList.add('active'); });
-        // Asegurarse de detener todos los videos al abrir el menú móvil
         menuToggle.addEventListener('click', stopAllIframeVideos); 
     }
     if(closeMenu && mobileMenu) {
@@ -140,7 +124,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const lightbox = document.getElementById('myLightbox');
         if(!lightbox) return;
 
-        // Detener videos si se abre el lightbox (aunque no debería haber videos aquí)
         stopAllIframeVideos(); 
 
         lightbox.style.display = "flex"; 
@@ -148,12 +131,10 @@ document.addEventListener("DOMContentLoaded", function() {
         const backToTop = document.getElementById("backToTop");
         if(backToTop) backToTop.style.display = "none";
 
-        // LÓGICA MÓVIL (<= 768px)
         if (window.innerWidth <= 768) {
             toggleFullScreen(lightbox); 
             buildMobileGallery(n);
         } else {
-            // LÓGICA ESCRITORIO
             lightbox.style.justifyContent = "center"; 
             lightbox.style.alignItems = "center";
             currentLightboxSlide(n);
@@ -184,7 +165,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if(backToTop && window.scrollY > 400) backToTop.style.display = "flex";
     }
 
-    // Detectar salida de Fullscreen
     document.addEventListener('fullscreenchange', () => {
         if (!document.fullscreenElement) {
             performClose();
@@ -367,11 +347,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // =========================================================
     //   4. GALERÍA SCROLL (OBSERVER PURO)
     // =========================================================
-    window.initScrollGallery = function(folderPath, imagePrefix, totalImages) {
+    // MODIFICADO: Agregado parametro 'step' para cargar impares (ej: step=2)
+    window.initScrollGallery = function(folderPath, imagePrefix, maxNumber, step = 1) {
         const container = document.getElementById('scroll-gallery');
         if (!container) return;
 
-        // Asegurarse de detener videos si estamos en la galería de imágenes
         stopAllIframeVideos();
 
         const observerOptions = { 
@@ -389,13 +369,19 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }, observerOptions);
 
-        for (let i = 1; i <= totalImages; i++) {
+        // Contador visual para el Lightbox (1, 2, 3...) aunque los archivos sean (1, 3, 5...)
+        let domIndex = 1; 
+
+        for (let i = 1; i <= maxNumber; i += step) {
             const domImg = document.createElement('img');
             domImg.src = `${folderPath}/${imagePrefix}${i}.jpg`;
             domImg.alt = `Foto ${i} - Eivind Street`;
             domImg.className = 'gallery-item';
             
-            domImg.onclick = function() { openLightbox(i); };
+            // Usamos una función IIFE o let en bucle para capturar el valor correcto de domIndex
+            (function(currentIndex) {
+                domImg.onclick = function() { openLightbox(currentIndex); };
+            })(domIndex);
 
             domImg.onload = function() {
                 if (this.naturalHeight > this.naturalWidth) {
@@ -413,8 +399,9 @@ document.addEventListener("DOMContentLoaded", function() {
             if (domImg.complete) domImg.onload();
 
             container.appendChild(domImg);
-            
             observer.observe(domImg);
+            
+            domIndex++; // Incrementamos el índice del DOM para el siguiente elemento
         }
     };
 
