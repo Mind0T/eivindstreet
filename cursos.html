@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos de Fotografía | Eivind Street</title>
+    <meta name="description" content="Talleres de fotografía profesional en CDMX con Eivind Leso. Desde nivel básico hasta avanzado.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Estilos específicos para la página de cursos */
+        .syllabus-box {
+            background-color: #1a1a1a;
+            padding: 25px;
+            border-left: 4px solid #254685;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .syllabus-title {
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+            display: block;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        .syllabus-list {
+            list-style: none;
+            padding: 0;
+        }
+        .syllabus-list li {
+            margin-bottom: 12px;
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            display: flex; /* Mantiene el icono y el texto alineados horizontalmente */
+            align-items: flex-start; /* Alinea arriba si el texto es largo */
+            gap: 12px; /* Espacio entre el icono y el texto */
+        }
+        /* El icono no se encogerá */
+        .syllabus-list li i {
+            color: #254685;
+            margin-top: 4px; /* Ajuste fino para alinear con el texto */
+            font-size: 0.9rem;
+            flex-shrink: 0; 
+        }
+        /* El contenedor del texto ocupa el resto del espacio */
+        .syllabus-list li span.syllabus-text {
+            flex: 1;
+        }
+        .syllabus-list li strong {
+            color: #fff;
+            font-weight: 600;
+        }
+        
+        /* Sección de Precios */
+        .price-container {
+            margin: 25px 0;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .price-regular {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+        .price-regular span {
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+        .price-promo {
+            font-size: 1.3rem;
+            color: #25D366; /* Verde tipo WhatsApp para resaltar oferta */
+            font-weight: 700;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .price-promo i { font-size: 1rem; }
+        .price-promo-label {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #ccc;
+        }
+
+        /* Botones */
+        .service-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        /* Estilo para el nuevo botón de descarga */
+        .btn-download {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            border: 1px solid #fff;
+            background-color: transparent;
+            color: #fff;
+        }
+        .btn-download:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #aaa;
+            font-weight: 600;
+            text-transform: uppercase;
+            flex-wrap: wrap;
+        }
+        .bio-section {
+            background-color: #0a0a0a;
+            padding: 60px 20px;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 1px solid #222;
+        }
+        .policies-text {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 40px;
+            line-height: 1.6;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.html"><img src="assets/img/general/logo.png" alt="Eivind Street Logo"></a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu-btn"><span></span><span></span><span></span></div>
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="proyectosPersonales.html">Proyectos Personales</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="about.html">Acerca de mi</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+            </ul>
+        </nav>
+        <div class="header-social desktop-social">
+            <a href="https://www.instagram.com/eivind_street/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="contacto.html"><i class="fa-regular fa-envelope"></i></a>
+            <a href="https://www.youtube.com/@Synthgraf_IA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <div class="mobile-menu-overlay" id="mobile-menu">
+            <button class="close-menu" id="close-menu-btn" style="background:none; border:none; color:white; font-size:3rem; position:absolute; top:20px; right:30px; cursor:pointer;">&times;</button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="proyectosPersonales.html">Proyectos Personales</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="about.html">Acerca de mi</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="services-container" style="padding-top: 50px;">
+            
+            <div style="text-align: center; margin-bottom: 80px; padding: 0 20px;">
+                <h1 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 20px; text-transform: uppercase;">Taller de Fotografía Integral</h1>
+                <p style="font-size: 1.2rem; font-weight: 300; color: #ddd; max-width: 800px; margin: 0 auto;">
+                    "Aprender a mirar, no solo a ver."<br><br>
+                    La fotografía es mucho más que apretar un botón; es una forma de detener el tiempo y contar historias. En estos cursos dejaremos atrás el "modo automático" para que tomes el control total de tus imágenes. Bienvenido a este espacio de aprendizaje.
+                </p>
+            </div>
+
+            <article class="service-row">
+                <div class="service-img">
+                    <img src="assets/img/curso/curso1.jpg" alt="Curso de Fotografía Básico Eivind Street">
+                </div>
+                <div class="service-text">
+                    <div class="course-meta">
+                        <span><i class="fas fa-signal"></i> Nivel Básico</span>
+                        <span><i class="far fa-clock"></i> 4 Sesiones (2 hrs c/u)</span>
+                    </div>
+                    <h2 class="service-title" style="font-size: 2.2rem;">Introducción a la Fotografía</h2>
+                    <p>Diseñado para perder el miedo al modo manual. Aprenderás cómo funciona tu cámara y los principios fundamentales para lograr fotografías impactantes, dominando la luz y la exposición.</p>
+                    
+                    <div class="syllabus-box">
+                        <span class="syllabus-title">Lo que aprenderás:</span>
+                        <ul class="syllabus-list">
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 1:</strong> Los cimientos de la imagen. Breve historia de la fotografía. Introducción al Triángulo de Exposición.</span></li>
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 2:</strong> Dominando la exposición. Velocidad de obturación, Apertura de diafragma e ISO. Práctica de medición.</span></li>
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 3:</strong> Luz y Color. La luz como recurso narrativo. Temperatura de color. Blanco y Negro vs. Color.</span></li>
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 4:</strong> Flujo de trabajo. Géneros fotográficos. Manejo ergonómico de la cámara. Gestión de archivos (RAW vs JPG).</span></li>
+                            <li style="color: #fff;"><i class="fas fa-star" style="color: gold;"></i> <span class="syllabus-text"><strong>Sesión 5 (Bonus):</strong> Caminata fotográfica guiada.</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="price-container">
+                        <div class="price-regular"><span>$1,000 MXN</span> <span style="font-size: 0.9rem; font-weight: 300; color:#aaa;">(Individual)</span></div>
+                        <div class="price-promo">
+                            <i class="fas fa-tags"></i> $800 MXN 
+                            <span class="price-promo-label">por persona al inscribirse 3 amigos</span>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 0.9rem; color: #888; font-style: italic; margin-bottom: 20px;">Bibliografía sugerida: El ojo del fotógrafo - Michael Freeman.</p>
+
+                    <div class="service-buttons">
+                        <a href="https://wa.me/525583538328?text=Hola,%20quiero%20inscribirme%20al%20curso%20Basico%20de%20Fotografia" target="_blank" class="btn-agenda">¡Quiero Inscribirme!</a>
+                        <a href="https://drive.google.com/file/d/1JPL696nAY9Xzy3o7kybGFr5X_TQJQdQ3/view?usp=drive_link" target="_blank" class="btn-download">
+                            <i class="fas fa-file-download"></i> Descargar temario
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="service-row">
+                <div class="service-img">
+                    <img src="assets/img/curso/curso2.jpg" alt="Curso de Fotografía Intermedio Eivind Street">
+                </div>
+                <div class="service-text">
+                    <div class="course-meta">
+                        <span><i class="fas fa-signal"></i> Nivel Básico - Intermedio</span>
+                        <span><i class="far fa-clock"></i> 4 Sesiones (2.5 hrs c/u)</span>
+                    </div>
+                    <h2 class="service-title" style="font-size: 2.2rem;">Mejorando mi Técnica y Mirada</h2>
+                    <p>Es momento de entrenar el ojo. Este curso combina técnicas avanzadas de exposición con teoría del arte y composición para desarrollar tu propio lenguaje visual.</p>
+                    
+                    <div class="syllabus-box">
+                        <span class="syllabus-title">Lo que aprenderás:</span>
+                        <ul class="syllabus-list">
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 1:</strong> Técnica Avanzada. Lectura de histograma. Modos de medición de luz. Enfoque avanzado.</span></li>
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 2:</strong> Composición Fotográfica. Reglas de composición, peso visual, líneas y perspectiva.</span></li>
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 3:</strong> Paradigmas del Arte. Imitación, proceso creativo y fotografía contemporánea. Análisis de imagen.</span></li>
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 4:</strong> Postproducción. Introducción al revelado digital básico (ajustes de luz, color y encuadre).</span></li>
+                            <li style="color: #fff;"><i class="fas fa-star" style="color: gold;"></i> <span class="syllabus-text"><strong>Sesión 5 (Bonus):</strong> Caminata fotográfica técnica y de composición.</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="price-container">
+                        <div class="price-regular"><span>$1,200 MXN</span> <span style="font-size: 0.9rem; font-weight: 300; color:#aaa;">(Individual)</span></div>
+                        <div class="price-promo">
+                            <i class="fas fa-tags"></i> $1,000 MXN 
+                            <span class="price-promo-label">por persona al inscribirse 3 amigos</span>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 0.9rem; color: #888; font-style: italic; margin-bottom: 20px;">Bibliografía sugerida: La cámara lúcida - Roland Barthes.</p>
+
+                    <div class="service-buttons">
+                        <a href="https://wa.me/525583538328?text=Hola,%20quiero%20inscribirme%20al%20curso%20Intermedio%20Tecnica%20y%20Mirada" target="_blank" class="btn-agenda">¡Quiero Inscribirme!</a>
+                        <a href="https://drive.google.com/file/d/1JPL696nAY9Xzy3o7kybGFr5X_TQJQdQ3/view?usp=drive_link" target="_blank" class="btn-download">
+                            <i class="fas fa-file-download"></i> Descargar temario
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="service-row">
+                <div class="service-img">
+                    <img src="assets/img/curso/curso3.jpg" alt="Curso de Fotografía Avanzado Eivind Street">
+                </div>
+                <div class="service-text">
+                    <div class="course-meta">
+                        <span><i class="fas fa-signal"></i> Nivel Intermedio - Avanzado</span>
+                        <span><i class="far fa-clock"></i> 10 Sesiones (3 hrs c/u)</span>
+                    </div>
+                    <h2 class="service-title" style="font-size: 2.2rem;">Exploración y Profesión</h2>
+                    <p>Un programa integral para profesionalizarse. Exploraremos iluminación artificial, equipo de estudio, diversos nichos de mercado (Aérea, Macro, Calle) y las bases del negocio.</p>
+                    
+                    <div class="syllabus-box">
+                        <span class="syllabus-title">Lo que aprenderás:</span>
+                        <ul class="syllabus-list">
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 1:</strong> Refuerzo de técnica fotográfica.</span></li>
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 2:</strong> Uso de Flash I (Speedlights y modos de disparo).</span></li>
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 3:</strong> Uso de Flash II (Esquemas de iluminación).</span></li>
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 4:</strong> Equipo fotográfico (Tripiés, Century stands, brazos mágicos, modificadores).</span></li>
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 5:</strong> Introducción a la fotografía aérea (Drones).</span></li>
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 6:</strong> Introducción a la macrofotografía.</span></li>
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 7:</strong> Introducción a la fotografía de estudio.</span></li>
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 8:</strong> Introducción a la fotografía callejera.</span></li>
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 9:</strong> Desarrollo de proyecto fotográfico personal.</span></li>
+                            <li><i class="fas fa-check"></i> <span class="syllabus-text"><strong>Sesión 10:</strong> La fotografía como negocio (Cotizaciones y clientes).</span></li>
+                            <li style="color: #fff;"><i class="fas fa-star" style="color: gold;"></i> <span class="syllabus-text"><strong>Sesión 11 (Bonus):</strong> Sesión práctica a escoger (Calle, Macro o Estudio).</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="price-container">
+                        <div class="price-regular"><span>$1,500 MXN</span> <span style="font-size: 0.9rem; font-weight: 300; color:#aaa;">(Individual)</span></div>
+                        <div class="price-promo">
+                            <i class="fas fa-tags"></i> $1,300 MXN 
+                            <span class="price-promo-label">por persona al inscribirse 3 amigos</span>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 0.9rem; color: #888; font-style: italic; margin-bottom: 20px;">Bibliografía sugerida: Sobre la fotografía - Susan Sontag.</p>
+
+                    <div class="service-buttons">
+                        <a href="https://wa.me/525583538328?text=Hola,%20quiero%20inscribirme%20al%20curso%20Avanzado%20Profesional" target="_blank" class="btn-agenda">¡Quiero Inscribirme!</a>
+                        <a href="https://drive.google.com/file/d/1JPL696nAY9Xzy3o7kybGFr5X_TQJQdQ3/view?usp=drive_link" target="_blank" class="btn-download">
+                            <i class="fas fa-file-download"></i> Descargar temario
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <div class="bio-section">
+                <img src="assets/img/acerca/acerca.jpg" alt="Instructor Eivind Leso" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid #254685; margin-bottom: 20px;">
+                <h3 style="margin-bottom: 10px;">Tu Instructor: Eivind Leso</h3>
+                <p style="max-width: 700px; margin: 0 auto; color: #ccc;">
+                    Fotógrafo profesional egresado de la Escuela Activa de Fotografía. Mi filosofía es simple: <strong>la técnica se aprende, pero la mirada se entrena</strong>. Me entusiasma compartir contigo no solo los conocimientos técnicos, sino los secretos del oficio que he aprendido a lo largo de 6 años.
+                </p>
+            </div>
+
+            <div class="policies-text">
+                <strong>Información Importante y Políticas:</strong><br>
+                1. Requisitos: Cámara propia (DSLR o Mirrorless) con modo manual. Para el curso avanzado se recomienda tripié.<br>
+                2. Inscripción: Se requiere un anticipo del 50% para apartar lugar. El resto se liquida en la primera sesión.<br>
+                3. Cancelaciones: Los anticipos no son reembolsables con menos de 48 horas de anticipación.<br>
+                4. Material: El material didáctico es para uso personal del alumno.
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-icons-footer">
+                <a href="https://www.instagram.com/eivind_street/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@Synthgraf_IA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="contacto.html"><i class="fa-regular fa-envelope"></i></a>
+            </div>
+            <p class="copyright-text">
+                © 2026 Eivind Leso | Irving Soriano. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
