@@ -102,7 +102,8 @@
  ## ✒️ Autor
 
  **Eivind Leso**
- - Fotógrafo Documental & Estudiante de Ingeniería en IA.
+ - Fotógrafo Documental · Estudiante de la Licenciatura en Ciencia de Datos (ESCOM, IPN).
+ - [LinkedIn](https://www.linkedin.com/in/irving-soriano)
  - [Instagram](https://www.instagram.com/eivind_street/)
  - [Web Oficial](https://eivindstreet.com)
 
